@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revision 1 ej2</title>
+</head>
+<body>
+    <input type="text" id="numero">
+    <button onclick="euro()">€</button>
+    <button onclick="dolar()">$</button>
+    <p id="resultado"></p>
+
+    <script>
+        function euro(){
+            if(document.getElementById("numero").value <= 0){return;}
+            var money = document.getElementById("numero").value;
+            document.getElementById("resultado").innerHTML = (parseFloat(money)*1.07).toFixed(2)  + " €";
+        }
+
+        function dolar(){
+            if(document.getElementById("numero").value <= 0){return;}
+            var money = document.getElementById("numero").value;
+            document.getElementById("resultado").innerHTML = (parseFloat(money)*0.93).toFixed(2) + " $";
+        }
+
+    </script>
+</body>
+</html>

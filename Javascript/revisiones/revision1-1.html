@@ -2,57 +2,21 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criculitos</title>
-    <style type="text/css">
-        .circulo {
-            width: 150px;
-            height: 150px;
-            float:left;
-            margin-right: 50px;
-            border-radius: 50%;
-        }
-        #circulo-rojo {
-            background-color: red;
-        }
-        #circulo-amarillo {
-            background-color: yellow;
-        }
-        #circulo-verde {
-            background-color: green;
-        }
-        .boton {
-            display: flex;
-            flex-direction: row;
-            margin-top: 20px;
-            margin-left: -500px;
-            justify-content: space-between;
-
-
-        }
-        
-    </style>
+    <link rel="stylesheet" href="revision1-1.css">
+    <title>Revision1 ej 1</title>
 </head>
 <body>
-    <div id="circulo-rojo" class="circulo"></div>
-    <div id="circulo-amarillo" class="circulo"></div>
-    <div id="circulo-verde" class="circulo"></div>
-    <div class="boton">
-        <button id="btn-circulo-rojo">Ocultar</button>
-        <button id="btn-circulo-amarillo">Ocultar</button>
-        <button id="btn-circulo-verde">Ocultar</button>
+    <div id="circulos">
+     <div id="rojo"></div> 
+      <div id="verde"></div> 
+       <div id="azul"></div> 
     </div>
-    <script>
-        document.getElementById("btn-circulo-rojo").onclick = function() {
-            document.getElementById("circulo-rojo").style.display = "none";
-        }
-        document.getElementById("btn-circulo-amarillo").onclick = function() {
-            document.getElementById("circulo-amarillo").style.display = "none";
-        }
-        document.getElementById("btn-circulo-verde").onclick = function() {
-            document.getElementById("circulo-verde").style.display = "none";
-        }
-    </script>
+    <div id="botones">
+        <button onclick="btnrojo()">Ocultar/Mostrar</button>
+        <button onclick="btnverde()">Ocultar/Mostrar</button>
+        <button onclick="btnazul()">Ocultar/Mostrar</button>
+    </div>
+    <script src="revision1-1.js"></script>  
 </body>
 </html>

@@ -13,14 +13,27 @@
     <p id="imc"></p>
 
     <script>
-      /*  function calcular() {
+        function calcular() {
             var peso = document.getElementById("peso").value;
-            var altura = document.getElementById("altura").value;
+            var a = document.getElementById("altura").value;
             var imc = document.getElementById("imc").value;
-            if (peso == null) {
-                document.getElementById("imc").innerHTML = "Rellene todos los campos";
+            var altura = Math.pow(a/100, 2);
+            if (peso/altura<= 18.5) {
+                document.getElementById("imc").innerHTML = "Su imc es inferior al normal";
             }
-        }*/
+            else if (peso/altura > 18.5 && peso/altura <= 24.9) {
+                document.getElementById("imc").innerHTML = "Su imc es normal";
+            }
+            else if (peso/altura > 24.9 && peso/altura <= 29.9) {
+                document.getElementById("imc").innerHTML = "Su imc es superior al normal";
+            }
+            else if (peso/altura > 29.9) {
+                document.getElementById("imc").innerHTML = "Su imc es una persona obesa";
+            }
+            else {
+                document.getElementById("imc").innerHTML = "Los valores introducidos son incorrectos";
+            }
+        }
     </script>
 </body>
 </html>

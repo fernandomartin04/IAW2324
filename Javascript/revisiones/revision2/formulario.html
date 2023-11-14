@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Examen recuperación</title>
+    <style>
+        #errorNombre{
+            color: red;
+        }
+        #errorCorreo{
+            color: red;
+        }
+        #errorRepetirCorreo{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre"/><label id="errorNombre"></label><br><br>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="text" name="correo" id="correo" placeholder="Correo"/><label id="errorCorreo"></label><br><br>
+
+    <label for="correo">Repetir correo electrónico:</label>
+    <input type="text" name="correo" id="repetirCorreo" placeholder="Correo"/><label id="errorRepetirCorreo"></label><br><br>
+
+    <button onclick="registrarse()">Registrarse</button>
+    <script>
+
+        function validacionNombre() {
+            valor = document.getElementById("nombre").value;
+            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) { 
+            document.getElementById("errorNombre").innerHTML = "  Este campo es obligatorio de rellenar";
+            }
+        }
+
+        function validacionCorreo() {
+            valor = document.getElementById("correo").value;
+            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) { 
+            document.getElementById("errorCorreo").innerHTML = "  Este campo es obligatorio de rellenar";
+            }
+            else {
+                var correoValido = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+                if ( correoValido.test(valor) ) {
+                    return true;
+                }
+                else {
+                    document.getElementById("errorCorreo").innerHTML = "El mail no es correcto";
+                    return false;
+                }
+            }
+        }
+
+     /*   function validaCorreos() {
+            var correo = document.getElementById("correo").value;
+            var correo2 = document.getElementById("repetirCorreo").value;
+            if( correo == null || correo.length == 0 || /^\s+$/.test(correo) ) { 
+            document.getElementById("errorRepetirCorreo").innerHTML = "  Este campo es obligatorio de rellenar";
+            }
+            else {
+                if (correo != correo2) {
+                document.getElementById("errorRepetirCorreo").innerHTML = "Los mails no coinciden";
+                }
+            }
+        }
+    */
+        function registrarse() {
+            validacionNombre();
+            validacionCorreo();
+            validaCorreos();
+            
+                var nombre = document.getElementById("nombre").value; //Creo la variable nombre
+                nombre = nombre.substr(0,3);
+                correo = correo2.substr(0,3); //Obtengo las 3 primeras cifras de ambos
+                usuario = nombre+correo2; //Doy el valor al usuario
+
+                contraseña = Math.ceil(Math.random()*9).toString()
+                    + Math.ceil(Math.random()*9).toString()
+                    + Math.ceil(Math.random()*9).toString()
+                    + Math.ceil(Math.random()*9).toString()
+                    + Math.ceil(Math.random()*9).toString()
+                    + Math.ceil(Math.random()*9).toString(); 
+
+                
+
+                alert ('Su usuario es: ' + usuario + 'y su contraseña ' + contraseña);
+            
+        }
+
+    </script>
+</body>
+</html>

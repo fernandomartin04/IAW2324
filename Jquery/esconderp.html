@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esconder p</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <p id="primero" class="todos">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut laudantium saepe cumque, repellendus voluptate autem commodi libero sunt in eum expedita quo corrupti perferendis est quis provident officiis, distinctio vel.</p>
+    <p id="segundo" class="todos">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga nemo autem officiis voluptatibus soluta quasi similique perspiciatis harum labore expedita nesciunt beatae, dolorem blanditiis praesentium explicabo. Voluptatibus consectetur est dolores?</p>
+    <p id="tercero" class="todos">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et alias debitis sed totam, corporis exercitationem, at harum impedit minima fuga fugiat quam iste temporibus perferendis ipsam. Reprehenderit illum magnam placeat.</p>
+    
+    <button onclick="esconder()" id="esconder">Esconder</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- Añado jquery-->
+    <script>
+        function esconder() {
+            let mensaje = prompt("Elige el párrafo que quieras eliminar");
+            if (mensaje == "primero"){
+                $("#primero").css("color", "red");
+            }
+            else if (mensaje == "segundo"){
+                $("#segundo").css("color", "red");
+            }
+            else if (mensaje == "tercero"){
+                $("#tercero").css("color", "red");
+            }
+            else if (mensaje == "todos"){
+                $(".todos").css("color", "red");
+            }
+        }
+    </script>
+</body>
+</html>

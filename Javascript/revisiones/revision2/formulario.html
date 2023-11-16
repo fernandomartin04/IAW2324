@@ -85,7 +85,7 @@
         function validacionApellido() {
             valor = document.getElementById("apellido").value;
             if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) { 
-            document.getElementById("errorNombre").innerHTML = "  Este campo es obligatorio de rellenar";
+            document.getElementById("errorApellido").innerHTML = "  Este campo es obligatorio de rellenar";
             }
         }
 
@@ -106,28 +106,32 @@
                 if (letra!=letr.toUpperCase()) {
                 document.getElementById("errorDni").innerHTML = "Dni erroneo, la letra del NIF no se corresponde";
                 }
-            }else{
+            }
+            else {
                 document.getElementById("errorDni").innerHTML = "Dni erroneo, formato no válido";
             }
         }
 
         function validacionPin() {
-            
+            valor = document.getElementById("pin").value;
+            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) { 
+                document.getElementById("errorPin").innerHTML = "Este campo es obligatorio de rellenar";
+            }
+            else if (!isNaN(valor)) {
+                document.getElementById("errorPin".innerHTML) = "El Pin debe de ser numérico";
+            }
         }
 
-     /*   function validaCorreos() {
-            var correo = document.getElementById("correo").value;
-            var correo2 = document.getElementById("repetirCorreo").value;
-            if( correo == null || correo.length == 0 || /^\s+$/.test(correo) ) { 
-            document.getElementById("errorRepetirCorreo").innerHTML = "  Este campo es obligatorio de rellenar";
+        function validacionPin2() {
+            pin1 = document.getElementById("pin").value;
+            pin2 = document.getElementById("pin2").value;
+            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) { 
+                document.getElementById("errorPin2").innerHTML = "Este campo es obligatorio de rellenar";
             }
-            else {
-                if (correo != correo2) {
-                document.getElementById("errorRepetirCorreo").innerHTML = "Los mails no coinciden";
-                }
+            else if (pin1 != pin2) {
+                document.getElementById("errorPin2").innerHTML = "Los pins no coinciden";
             }
         }
-    */
         function registrarse() {
             validacionNombre();
             validacionCorreo();
@@ -139,17 +143,7 @@
                 var nombre = document.getElementById("nombre").value; //Creo la variable nombre
                 nombre = nombre.substr(0,3);
                 correo = correo2.substr(0,3); //Obtengo las 3 primeras cifras de ambos
-                usuario = nombre+correo2; //Doy el valor al usuario
-
-                contraseña = Math.ceil(Math.random()*9).toString()
-                    + Math.ceil(Math.random()*9).toString()
-                    + Math.ceil(Math.random()*9).toString()
-                    + Math.ceil(Math.random()*9).toString()
-                    + Math.ceil(Math.random()*9).toString()
-                    + Math.ceil(Math.random()*9).toString(); 
-
-                
-
+                usuario = nombre+correo2; //Doy el valor al usuario 
                 alert ('Su usuario es: ' + usuario + 'y su contraseña ' + contraseña);
             
         }

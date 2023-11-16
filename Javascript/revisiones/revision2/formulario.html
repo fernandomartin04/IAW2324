@@ -12,20 +12,48 @@
         #errorCorreo{
             color: red;
         }
-        #errorRepetirCorreo{
+        #errorApellido{
             color: red;
         }
+        #errorDni{
+            color: red;
+        }
+        #errorPin{
+            color: red;
+        }
+        #errorPin2{
+            color: red;
+        }
+
     </style>
 </head>
 <body>
     <label for="nombre">Nombre:</label>
     <input type="text" name="nombre" id="nombre" placeholder="Nombre"/><label id="errorNombre"></label><br><br>
 
+    <label for="apellido">Apellido:</label>
+    <input type="text" name="apellido" id="apellido"><label id="errorApellido"></label><br><br>
+
     <label for="correo">Correo electrónico:</label>
     <input type="text" name="correo" id="correo" placeholder="Correo"/><label id="errorCorreo"></label><br><br>
 
-    <label for="correo">Repetir correo electrónico:</label>
-    <input type="text" name="correo" id="repetirCorreo" placeholder="Correo"/><label id="errorRepetirCorreo"></label><br><br>
+    <label for="dirección">Dirección:</label>
+    <input type="text" name="dirección" id="dirección"><br><br>
+
+    <label for="ciudad">Ciudad:</label>
+    <input type="text" name="ciudad" id="ciudad"><br><br>
+
+    <label for="dirección">Teléfono</label>
+    <input type="text" name="teléfono" id="teléfono"><br><br>
+
+    <label for="dni">DNI:</label>
+    <input type="text" name="dni" id="dni"><label id="errorDni"></label><br><br>
+
+    <label for="pin">PIN:</label>
+    <input type="text" name="pin" id="pin"><label id="errorPin"></label><br><br>
+
+    <label for="pin2">Repetir PIN:</label>
+    <input type="text" name="pin2" id="pin2"><label id="errorPin2"></label><br><br>
 
     <button onclick="registrarse()">Registrarse</button>
     <script>
@@ -54,6 +82,39 @@
             }
         }
 
+        function validacionApellido() {
+            valor = document.getElementById("apellido").value;
+            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) { 
+            document.getElementById("errorNombre").innerHTML = "  Este campo es obligatorio de rellenar";
+            }
+        }
+
+        function validacionDni(dni) {
+            var numero
+            var letr
+            var letra
+            var expresion_regular_dni
+            
+            expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+            
+            if(expresion_regular_dni.test (dni) == true){
+                numero = dni.substr(0,dni.length-1);
+                letr = dni.substr(dni.length-1,1);
+                numero = numero % 23;
+                letra='TRWAGMYFPDXBNJZSQVHLCKET';
+                letra=letra.substring(numero,numero+1);
+                if (letra!=letr.toUpperCase()) {
+                document.getElementById("errorDni").innerHTML = "Dni erroneo, la letra del NIF no se corresponde";
+                }
+            }else{
+                document.getElementById("errorDni").innerHTML = "Dni erroneo, formato no válido";
+            }
+        }
+
+        function validacionPin() {
+            
+        }
+
      /*   function validaCorreos() {
             var correo = document.getElementById("correo").value;
             var correo2 = document.getElementById("repetirCorreo").value;
@@ -70,7 +131,10 @@
         function registrarse() {
             validacionNombre();
             validacionCorreo();
-            validaCorreos();
+            validacionApellido();
+            validacionDni();
+            validacionPin();
+            validacionPin2();
             
                 var nombre = document.getElementById("nombre").value; //Creo la variable nombre
                 nombre = nombre.substr(0,3);

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprueba tus reflejos</title>
+    <style type="text/css">
+        #forma
+        {
+            width: 200px;
+            height: 200px;
+            background-color:red;
+            display: none;
+            position:relative;
+            top:100px;
+            left:200px;
+        }
+        .bold
+        {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Comprueba tus reflejos!</h1>
+    <h2>Haz click en los circulos y rectángulos tan rápido como puedas!</h2>
+    <p class="bold">Tiempo de reacción: <span id="tiempoReaccion"></span></p>
+    <p class="bold" id="salidaRecord"></p>
+    <div id="forma"></div>
+
+
+
+    <script type="text/javascript">
+        var inicio = new Date().getTime(); //Alcance global desde 1970 hasta que aparece el objeto
+        
+        function obtenerColorAleatorio() { //Esta funcion se copia en internet y es para obtener un color aleatorio
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++ ) {
+                color += letters[Math.round(Math.random() * 15)];
+            }
+            return color;
+        }
+
+
+        function aparecerForma()
+        {
+            var top = Math.random()*400; //Con esto logro poner random su margin top de max 400px
+            var left = Math.random()*400; //Con esto logro poner random su margin left de max 400px
+            var width = (Math.random()*200)+100; //Con esto pongo un tamaño aleatorio de max 200 y le sumo 100 pq asi m aseguro q minimo sea de 100px
+
+            if (Math.random()>0.5)
+            /*Aqui creo una condicion de la forma con un numero aleatorio, como Math.random crea un numero entre 0 y 1,
+            la condicion q pongo esq si sale menor q 0.5 sera circular(Poniendo el border radius 50) y si sale mayor pues cuadrado */
+                {
+                    document.getElementById("forma").style.borderRadius = "50%";
+
+                }
+            else
+                {
+                    document.getElementById("forma").style.borderRadius = "0%";
+                }
+                
+            /*En estas 5 líneas llevamos a cabo los cambios de las variables anteriores de cambio de altura, anchura, margen y color */
+            document.getElementById("forma").style.width = width + "px"; 
+            document.getElementById("forma").style.height = width + "px";
+            document.getElementById("forma").style.backgroundColor = obtenerColorAleatorio(); //Aquí llamamos a la funcion de obtener un color aleatorio
+            document.getElementById("forma").style.top = top + "px";
+            document.getElementById("forma").style.left = left + "px";
+
+
+            document.getElementById("forma").style.display = "block";  //Con esta funcion hacemos que aparezca el objeto
+            inicio = new Date().getTime(); /*Para que no se acumule el tiempo en el contador, vamos a llamar a la variable inicio con la que 
+        establecemos de nuevo el contador hasta el momento en el que aparece la nueva imagen, es decir ponemos el contador en 0 hasta que pulsamos el boton,
+        por eso utilizamos denuevo "new Date().getTime()" */
+        }
+
+
+        function aparecerFormaDespuesRetraso()
+        {
+            setTimeout(aparecerForma, Math.random()*2000);  /*Con esto establecemos el tiempo de aparicion random, 
+        primero llamamos a la funcion que queremos añadirle el tiempo de ejecucion y despues le añadimos el tiempo random*/
+        }
+        aparecerFormaDespuesRetraso();
+
+
+        document.getElementById("forma").onclick = function ()
+        {
+            document.getElementById("forma").style.display = "none"; //Desaparece el objeto
+            var fin = new Date().getTime(); //Alcance global desde el 1970 hasta el momento que se pulsa el botón
+            var diferencia = (fin-inicio)/1000; //Restamos para obtener el tiempo y dividimos entre 1000 para que aparezcan los segundos y no milisegundos
+            document.getElementById("tiempoReaccion").innerHTML = diferencia + "s"; //Con esto me aparece el tiempo tardado
+            aparecerFormaDespuesRetraso(); //Aqui llamamos a la funcion "aparecerFormaDespuesRetraso"
+        }
+
+    </script>
+</body>
+</html>

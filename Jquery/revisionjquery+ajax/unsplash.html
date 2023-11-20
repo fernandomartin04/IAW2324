@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Ejercicio Unsplash</title>
+</head>
+<body>
+    <div id="resultado"></div>
+    <button id="mostrar">Nueva foto</button>
+    <script>
+        $(document).ready(function () {
+            $('#mostrar').click(function() {
+                let apikey = 'rSak_2sc-cy8X82RtjiVW7r4QOQ4SnjZMMIRQUkXn2g';
+
+                $.ajax ({
+                    url: `https://api.unsplash.com/photos/random?client_id=${apikey}`,
+                    success: function (data) {
+                        $('#resultado').html (`
+                        <img src="${data.urls.small}">
+
+                        `);
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+

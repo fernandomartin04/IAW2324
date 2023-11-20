@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Peliculas</title>
+</head>
+<body>
+    <h2>Encuentra tu película favorita</h2>
+    <input type="text" id="pelicula">
+    <div id="resultado"></div>
+    <button id="mostrar">Busca tu película</button>
+
+    <script>
+
+        $(document).ready(function () {
+            
+            $('#mostrar').click(function(){
+                let apiKey = 'cc46c20b';
+                let pelicula = $('#pelicula').val();
+
+                $.ajax({
+                    url:`http://www.omdbapi.com/?apikey=${apikey}&t=${pelicula}`,
+                    succes: function(data){
+                        $('#resultado').html(`
+                        <h2>${data.Title} ${data.Year}</h2>
+                        <p>${data.Director}</p>
+                        <p>${data.Awards}</p>
+                        `);
+                    },
+                    error: function(){
+                        $('#resultado').html('<p>Error, no se encuentra la película que deseas</p>');
+                    },
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

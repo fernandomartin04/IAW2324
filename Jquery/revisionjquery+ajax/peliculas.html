@@ -8,8 +8,8 @@
 </head>
 <body>
     <h2>Encuentra tu película favorita</h2>
-    <input type="text" id="pelicula">
-    <div id="resultado"></div>
+    <input id="pelicula"><br>
+    <div id="resultado"></div><br>
     <button id="mostrar">Busca tu película</button>
 
     <script>
@@ -17,15 +17,17 @@
         $(document).ready(function () {
             
             $('#mostrar').click(function(){
-                let apiKey = 'cc46c20b';
+                let apikey = 'cc46c20b';
                 let pelicula = $('#pelicula').val();
 
                 $.ajax({
-                    url:`http://www.omdbapi.com/?apikey=${apikey}&t=${pelicula}`,
+                    url: `http://www.omdbapi.com/?apikey=${apikey}&t=${pelicula}`,
                     succes: function(data){
                         $('#resultado').html(`
-                        <h2>${data.Title} ${data.Year}</h2>
+                        <h2>${data.Title}, ${data.Year}</h2>
+                        <img src="${data.Poster}">
                         <p>${data.Director}</p>
+                        <p>${data.Genre}</p>
                         <p>${data.Awards}</p>
                         `);
                     },

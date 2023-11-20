@@ -23,6 +23,7 @@
                 $.ajax({
                     url: `http://www.omdbapi.com/?apikey=${apikey}&t=${pelicula}`,
                     succes: function(data){
+                        if (data.Response === "true") {
                         $('#resultado').html(`
                         <h2>${data.Title}, ${data.Year}</h2>
                         <img src="${data.Poster}">
@@ -30,9 +31,12 @@
                         <p>${data.Genre}</p>
                         <p>${data.Awards}</p>
                         `);
+                        } else {
+                            $('#resultado').html("<p>La película no ha sido encontrada</p>")
+                        }
                     },
                     error: function(){
-                        $('#resultado').html('<p>Error, no se encuentra la película que deseas</p>');
+                        $('#resultado').html('<p>Error al buscar la pleícula</p>');
                     },
                 });
             });

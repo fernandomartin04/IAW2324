@@ -8,7 +8,15 @@
 <body>
 
     <?php
-        $diaHoy = date("l");
+        $fechaInicial = getdate();
+        $fechaFinal = date('2024-04-14');
+        
+        $fechaInicialSegundos = strtotime($fechaInicial);
+        $fechaFinalSegundos = strtotime($fechaFinal);
+        
+        $dias = ($fechaFinalSegundos - $fechaInicialSegundos) / 86400;
+        echo "La diferencia entre la fecha : " . $fechaInicial . " y " . $fechaFinal . " es de: " . round($dias, 0, PHP_ROUND_HALF_UP)  . " dias." ;
+    
     ?>
 </body>
 </html>

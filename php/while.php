@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8" http-equiv="refresh" content="15">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fecha y Hora</title>
+    <title>While</title>
+    <style>
+    tr {border:1px;}
+    </style>
 </head>
 <body>
 
     <?php
-        setlocale(LC_TIME, 'spanish');
-        $fechaHora = strftime('%A, %d de %B de %Y %H:%M:%S');
-        echo "<p>La fecha y hora actual en español es: $fechaHora</p>";
+        $x = 1;
+
+        while($x<=10) {
+            echo "<tr style=><td>$x</td></tr>";
+            $x++;
+        }
     ?>
 </body>
 </html>

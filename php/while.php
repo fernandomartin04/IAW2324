@@ -14,7 +14,7 @@
         $x = 1;
 
         while($x<=10) {
-            echo "<table border='1'><tr style=><td>$x</td></tr></table>";
+            echo "<table border='1'><tr><td>$x</td></tr></table>";
             $x++;
         }
     ?>

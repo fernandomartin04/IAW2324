@@ -10,10 +10,12 @@
 </head>
 <body>
     <?php
-
+        echo "<table border='1'><tr>";
         for($x = 0; $x <= 10; $x++) {
-            echo "<table border='1'><td><tr>$x</tr></td></table>";
+            echo "<td>$x</td>";
         }
+        echo "</tr></table>";
+            
     ?>
 </body>
 </html>

@@ -7,7 +7,9 @@
 </head>
 <body>
     <form action="" method="post">
-        Usuario: <input type="password" name="contraseña">
+        Usuario: <input type="text" name="usuario"/><br/><br/>
+        Contraseña: <input type="password" name="contrasena"/><br/><br/>
+        <input type="submit" name="submit" value="ACCEDER"/> 
     </form>
 
     <?php
@@ -16,7 +18,7 @@
         $contrasena = htmlspecialchars($_POST['contrasena']);
 
         if(isset($_POST["submit"])) {
-            if ($usuario=='admin' && $contrasena=='H4CK3R4$1R') {
+            if ($usuario=='admin' && $contrasena=='FernandoElH4acker') {
                 echo "<script>alert('Acceso Aceptado');</script>";
             }
             else {

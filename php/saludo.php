@@ -15,7 +15,7 @@
     
         if(isset($_POST["submit"])) {
             $fecha = date("d/m/y");
-            echo "Hola" . &_POST['nombre'] . "hoy es $fecha";
+            echo "Hola" . $_POST['nombre'] . "hoy es $fecha";
         }
     
     ?>

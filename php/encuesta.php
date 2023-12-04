@@ -16,8 +16,7 @@
         <input type="radio" name="futbol" value="barsa"> Barsa:
         <input type="radio" name="futbol" value="madrid"> Madrid:
         <input type="radio" name="futbol" value="betis"> Betih
-
-
+        <input type="submit" name="submit">
 
     </form>
 
@@ -27,14 +26,14 @@
         $apellido = htmlspecialchars($_POST['apellido']);
         $pelicula = htmlspecialchars($_POST['pelicula']);
         $edad = htmlspecialchars($_POST['edad']);
-        $sevilla = htmlspecialchars($_POST['futbol']);
+        $futbol = htmlspecialchars($_POST['futbol']);
 
         if(isset($_POST["submit"])) {
-            if ($checkbox =='true' && $contrasena=='FernandoElH4acker') {
-                echo "<script>alert('Acceso Aceptado');</script>";
+            if (empty($edad)) {
+                echo $nombre "<br>" . $apellido "<br>" . $pelicula "<br>" . $futbol;
             }
             else {
-                echo "<script>alert('Acceso Denegado');</script>";
+                echo $nombre "<br>" . $apellido "<br>" . $pelicula "<br>" . $edad "<br>" . $futbol;
             }
         }
 

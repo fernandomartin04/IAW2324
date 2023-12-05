@@ -15,12 +15,9 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $numero = htmlspecialchars($_POST["numero"]);
             $submit = htmlspecialchars($_POST["submit"]);
-            //if(!is_numeric($numero)){
-             //   echo "<p>El valor deb de ser un número</p>"
-           // }
-           // else {
-                echo rand(1,$numero);
-           // }
+            
+            echo rand(1,$numero);
+            
         }
     ?>
 </body>

@@ -13,28 +13,28 @@
         <input type="submit" name="submit">
     </form>
     <?php
-        $nombre = $archivo = $submit = "";
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $nombre = test_input($_POST["nombre"]);
-            $archivo = test_input($_FILES["file"]);
-            $submit = test_input($_POST["submit"]);
+            $nombre = htmlspecialchars($_POST["nombre"]);
+            $archivo = htmlspecialchars($_POST["file"]);
+            $submit = htmlspecialchars($_POST["submit"]);
+
+            $imagenNombre = $_FILES["file"]["name"];
+            $imagenTipo = $_FILES["file"]["type"];
+            $imagenTmpName = $_FILES["file"]["tmp_name"];
+
+            $carpetaDestino = "imagenes/";
+            $rutaDestino = $carpetaDestino . $imagenNombre;
+            move_uploaded_file($imagenTmpName, $rutaDestino);
+
+            echo '<p>Nombre: ' . $nombre . '</p>';
+            echo '<img src="' . $rutaDestino . '" alt="foto">';
+
         }
 
-        function test_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-          }
+        
 
-        if(isset($_POST["submit"])) {
-            if (empty($file)) {
-                echo $nombre;
-            }
-            else {
-                echo "<br>" . $nombre . "<br>" . $archivo;
-            }
-        }
+        
 
     ?>
 

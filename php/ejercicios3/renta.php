@@ -44,19 +44,12 @@
 
             $dni_valido = validacion_dni($dni);
             
-            if ($dni_valido == true) { //Validación del dni
-                echo "<p>Este DNI es válido</p>";
-
-                if (validateEmail($email) == true) {
-                    echo "<p>El email introducido es correcto!</p>";
-                }
-                else {
-                    echo "<p>El email introducido no es correcto!</p>";
-                } 
+            if ($dni_valido == true && validateEmail($email) == true) { 
+                echo "<p>Este DNI es válido y correos son válidos</p>";
 
             } 
-            else if ($dni_valido == false) {
-                echo "<p>Este DNI no es válido</p>";
+            else {
+                echo "<p>Uno de los dos no es verdadero</p>";
 
             }
             

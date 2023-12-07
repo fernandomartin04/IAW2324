@@ -17,7 +17,7 @@
     </form>
 
     <?php
-
+    /*
         function validacion_dni($dni){ //función de validación del dni
             $misletras = substr($dni, -1);
             $numerosdni = substr($dni, 0, -1);
@@ -45,13 +45,44 @@
                 return false;
             }
         }
+        */
 
-        if (validacionSalario($salario) != "" && validateEmail($email) != "" && validacion_dni($dni) != "") {
-
+        if ($salario != "" && $email != "" && $dni != "" && $nombre != "" && $apellido != "") {
+            /*
             validateEmail($email);
             validacionSalario($salario);
             validacion_dni($dni);
+            */
+
+            function validacion_dni($dni){ //función de validación del dni
+                $misletras = substr($dni, -1);
+                $numerosdni = substr($dni, 0, -1);
+                if ( substr("TRWAGMYFPDXBNJZSQVHLCKE", $numerosdni%23, 1) == $misletras && strlen($misletras) == 1 && strlen ($numerosdni) == 8 ){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
     
+            function validateEmail($email) {
+                if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+    
+            function validacionSalario ($salario) {
+                if (is_numeric($salario)) { //valido si es numérico el campo del salario
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+
             if (validacion_dni($dni) == false) { //Valido si el dni es correcto
                 echo "<p>El dni no es correcto</p>";
             } 
@@ -64,12 +95,12 @@
                 echo "<p>El email no es correcto</p>";
             }
 
-          /*  else {
-                if ($salario <= 10000) {
+            else {
+                if ($salario <= "10000") {
                     echo "<p>Tu impositivo es del 5%</p>";
                 }
 
-                else if ($salario > 10000 && $salario <= 20000) {
+                /*else if ($salario > 10000 && $salario <= 20000) {
                     echo "<p>Tu impositivo es del 15%</p>";
                 }
 
@@ -83,10 +114,14 @@
 
                 else {
                     echo "<p>Tu impositivo es del 45%</p>"
-                }
+                }*/
 
-            } */
-         }
+            } 
+        }
+
+        else {
+            echo "<p>Todos los campos deben de estar llenos</p>"
+        }
 
         
             

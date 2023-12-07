@@ -88,7 +88,7 @@
             } 
 
             else if (validacionSalario($salario) == false) { //Valido si el salario es correcto
-                echo "<p>El valor del salario no es numérico</p>";
+                echo "<p>El valor del salario tiene que ser numérico</p>";
             }
             
             else if (validateEmail($email) == false) { //Valido si el email es correcto

@@ -10,6 +10,7 @@
 
         <input type="text" name="nombre" placeholder="Escribe tu nombre"><br><br>
         <input type="text" name="apellido" placeholder="Escribe tu apellido"><br><br>
+        <input type="text" name="salario" placeholder="Escribe tu salario en bruto"><br><br>
         <input type="text" name="email" placeholder="Escribe tu email"><br><br>
         <input type="text" name="dni" placeholder="Escribe tu dni"><br><br>
         <input type="submit" name="submit">
@@ -36,26 +37,61 @@
             }
         }
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $nombre = htmlspecialchars($_POST["nombre"]);
-            $apellido = htmlspecialchars($_POST["apellido"]);
-            $email = htmlspecialchars($_POST["email"]);
-            $dni = htmlspecialchars($_POST["dni"]);
-
-            $dni_valido = validacion_dni($dni);
-            
-            if ($dni_valido == true && validateEmail($email) == true) { //Valido si son correctos o no el dni y el correo
-                echo "<p>Este DNI es válido y correos son válidos</p>";
-
-            } 
+        function validacionSalario ($salario) {
+            if (is_numeric($salario)) { //valido si es numérico el campo del salario
+                return true;
+            }
             else {
-                echo "<p>Uno de los dos no es verdadero</p>";
+                return false;
+            }
+        }
 
+        if (validacionSalario($salario) != "" && validateEmail($email) != "" && validacion_dni($dni) != "") {
+
+            validateEmail($email);
+            validacionSalario($salario);
+            validacion_dni($dni);
+    
+            if (validacion_dni($dni) == false) { //Valido si el dni es correcto
+                echo "<p>El dni no es correcto</p>";
+            } 
+
+            else if (validacionSalario($salario) == false) { //Valido si el salario es correcto
+                echo "<p>El valor del salario no es numérico</p>";
             }
             
+            else if (validateEmail($email) == false) { //Valido si el email es correcto
+                echo "<p>El email no es correcto</p>";
+            }
+
+          /*  else {
+                if ($salario <= 10000) {
+                    echo "<p>Tu impositivo es del 5%</p>";
+                }
+
+                else if ($salario > 10000 && $salario <= 20000) {
+                    echo "<p>Tu impositivo es del 15%</p>";
+                }
+
+                else if ($salario > 20000 && $salario <= 35000) {
+                    echo "<p>Tu impositivo es del 20%</p>";
+                }
+
+                else if ($salario > 35000 && $salario <= 60000) {
+                    echo "<p>Tu impositivo es del 30%</p>";
+                }
+
+                else {
+                    echo "<p>Tu impositivo es del 45%</p>"
+                }
+
+            } */
+         }
+
+        
             
-                
-        } 
+            
+             
 
     ?>
 

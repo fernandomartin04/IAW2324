@@ -52,16 +52,24 @@
                 } else if (!$emailValido) {
                     echo "<p>El email no es correcto</p>";
                 } else {
-                    if ($salario <= 10000) {
-                        echo "<p>Tu impositivo es del 5%</p>";
-                    } else if ($salario > 10000 && $salario <= 20000) {
-                        echo "<p>Tu impositivo es del 15%</p>";
-                    } else if ($salario > 20000 && $salario <= 35000) {
-                        echo "<p>Tu impositivo es del 20%</p>";
-                    } else if ($salario > 35000 && $salario <= 60000) {
-                        echo "<p>Tu impositivo es del 30%</p>";
+                    if ($salario <= 0) {
+                        echo "<p>El salario debe de ser un número positivo</p>";
+                    }
+                    else if ($salario < 10000) {
+                        $declara1 = $salario * 0.05;
+                        echo "<p>Tu impositivo es del 5% y tu declaración es de: </p>" . $declara1;
+                    } else if ($salario < 20000) {
+                        $declara2 = $salario * 0.15;
+                        echo "<p>Tu impositivo es del 15% y tu declaración es de: </p>" . $declara2;
+                    } else if ($salario < 35000) {
+                        $declara3 = $salario * 0.2;
+                        echo "<p>Tu impositivo es del 20% y tu declaración es de: </p>" . $declara3;
+                    } else if ($salario < 60000) {
+                        $declara4 = $salario * 0.3;
+                        echo "<p>Tu impositivo es del 30% y tu declaración es de: </p>" . $declara4;
                     } else {
-                        echo "<p>Tu impositivo es del 45%</p>";
+                        $declara5 = $salario * 0.45;
+                        echo "<p>Tu impositivo es del 45% y tu declaración es de: </p>" . $declara5;
                     }
                 }
             } else {

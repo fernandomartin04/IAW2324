@@ -47,6 +47,18 @@
                 //Si todos los campos están rellenos, ejecuto las funciones de validacion
                 $dniValido = validacionDni($dni);
                 $emailValido = validacionEmail($email);
+
+                if (!$dniValido) { //Valido si el dni es correcto
+                    echo "<p>El dni no es correcto</p>";
+                }
+                else if (!$emailValido){
+                    echo "<p>El email no es válido</p>";
+                }
+                else {
+                    if () {
+                        ;
+                    }
+                }
             }
 
             else {

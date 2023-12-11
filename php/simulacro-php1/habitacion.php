@@ -13,27 +13,26 @@
         <input type="text" name="dni" id="dni" placeholder="Escribe tu dni"><br><br>
         <label for="habitaciones">Elige el tipo de habitación: </label>
         <select name="habitacion" id="habitacion">
-            <option value="simple" name="simple">Simple: 65€</option>
-            <option value="doble" name="doble">Doble: 80€</option>
-            <option value="triple" name="triple">Triple: 140€</option>
-            <option value="suite" name="suite">Suite: 180€</option>
+            <option value="simple" >Simple: 65€</option>
+            <option value="doble" >Doble: 80€</option>
+            <option value="triple" >Triple: 140€</option>
+            <option value="suite" >Suite: 180€</option>
         </select>
         <input type="submit" name="submit" id="submit">
     </form>
 
     <?php
-        //Función que valida el dni
-        function validacionDni($dni){ 
+        function validacion_dni($dni){ 
             $misletras = substr($dni, -1);
             $numerosdni = substr($dni, 0, -1);
             return (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numerosdni%23, 1) == $misletras && strlen($misletras) == 1 && strlen ($numerosdni) == 8);
         }
 
-        //Función que valida el correo
-        function validacionEmail($email) {
+        function validateEmail($email) {
             return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
         }
 
+        
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nombre = htmlspecialchars($_POST["nombre"]);
@@ -42,30 +41,57 @@
             $dni = htmlspecialchars($_POST["dni"]);
             $submit = htmlspecialchars($_POST["submit"]);
 
-            if ($habitacion != "" && $email != "" && $dni != "" && $nombre != "" && $apellido != "") {
+            if ($email != "" && $dni != "" && $nombre != "" && $apellido != "") {
 
-                //Si todos los campos están rellenos, ejecuto las funciones de validacion
-                $dniValido = validacionDni($dni);
-                $emailValido = validacionEmail($email);
+                $dniValido = validacion_dni($dni);
+                $emailValido = validateEmail($email);
 
-                if (!$dniValido) { //Valido si el dni es correcto
+                if (!$dniValido) {
                     echo "<p>El dni no es correcto</p>";
-                }
-                else if (!$emailValido){
-                    echo "<p>El email no es válido</p>";
-                }
+                } else if (!$emailValido) {
+                    echo "<p>El email no es correcto</p>";
+                } 
                 else {
-                    if () {
-                        ;
-                    }
-                }
-            }
+                    if (isset($_POST["habitacion"])) {
+                        $opcionElegida = $_POST["habitacion"];
+                        $imagen0 = "hab0.png";
+                        $imagen1 = "hab1.png";
+                        $imagen2 = "hab2.png";
+                        $imagen3 = "hab3.png";
 
-            else {
-                echo "<p>Todo el formulario hay que responderlo</p>"
+                        switch ($opcionElegida) {
+                            case "simple":
+                                echo "<br><br><h2>Resumen de la compra:</h2><br><p>Nombre del comprador: $nombre</p>" . "<p>Apellido: $apellido</p>" . "<p>Dni: $dni</p>"
+                                 . "<p>Su email es: $email</p>" . 
+                                "<p>Tiene que pagar 65 euros y esta es la imagen de su habitación:</p><br>" . '<img src="' . $imagen0 . '" width="15%" height="10%" alt="foto">';
+                                break;
+                            case "doble":
+                                echo "<br><br><h2>Resumen de la compra:</h2><br><p>Nombre del comprador: $nombre</p>" . "<p>Apellido: $apellido</p>" . "<p>Dni: $dni</p>"
+                                . "<p>Su email es: $email</p>" . 
+                               "<p>Tiene que pagar 80 euros y esta es la imagen de su habitación:</p><br>" . '<img src="' . $imagen1 . '" width="15%" height="10%" alt="foto">';                                
+                               break;
+                            case "triple":
+                                echo "<br><br><h2>Resumen de la compra:</h2><br><p>Nombre del comprador: $nombre</p>" . "<p>Apellido: $apellido</p>" . "<p>Dni: $dni</p>"
+                                . "<p>Su email es: $email</p>" . 
+                               "<p>Tiene que pagar 140 euros y esta es la imagen de su habitación:</p><br>" . '<img src="' . $imagen2 . '" width="15%" height="10%" alt="foto">';                                
+                               break;
+                            case "suite":
+                                echo "<br><br><h2>Resumen de la compra:</h2><br><p>Nombre del comprador: $nombre</p>" . "<p>Apellido: $apellido</p>" . "<p>Dni: $dni</p>"
+                                . "<p>Su email es: $email</p>" . 
+                               "<p>Tiene que pagar 180 euros y esta es la imagen de su habitación:</p><br>" . '<img src="' . $imagen3 . '" width="15%" height="10%" alt="foto">';                                
+                               break;
+                        }
+                    }
+                    else {
+                        echo "<p>Debes de seleccionar alguna habitación</p>";
+                    }
+                    
+                } 
+
+            } else {
+                echo "<p>Todos los campos deben estar llenos</p>";
             }
         }
-        
     ?>
 
 </body>

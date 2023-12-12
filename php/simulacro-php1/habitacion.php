@@ -22,12 +22,14 @@
     </form>
 
     <?php
+    //Funcion del dni de la validacion
         function validacion_dni($dni){ 
             $misletras = substr($dni, -1);
             $numerosdni = substr($dni, 0, -1);
             return (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numerosdni%23, 1) == $misletras && strlen($misletras) == 1 && strlen ($numerosdni) == 8);
         }
 
+    //Funcion del email de la validacion
         function validateEmail($email) {
             return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
         }
@@ -41,20 +43,24 @@
             $dni = htmlspecialchars($_POST["dni"]);
             $submit = htmlspecialchars($_POST["submit"]);
 
+        //Valido que todos los campos estén llenos
             if ($email != "" && $dni != "" && $nombre != "" && $apellido != "") {
 
-                $dniValido = validacion_dni($dni);
+                $dniValido = validacion_dni($dni);  //Ejecuto las funciones de validación, una vez sepa que todos los campos están rellenos
                 $emailValido = validateEmail($email);
 
-                if (!$dniValido) {
+                if (!$dniValido) { //Valido que esté correcto el dni
                     echo "<p>El dni no es correcto</p>";
-                } else if (!$emailValido) {
+                } 
+
+                else if (!$emailValido) { //Valido que este correcto el email
                     echo "<p>El email no es correcto</p>";
                 } 
-                else {
+
+                else { //Si dni y email son correctos...
                     if (isset($_POST["habitacion"])) {
-                        $opcionElegida = $_POST["habitacion"];
-                        $imagen0 = "hab0.png";
+                        $opcionElegida = $_POST["habitacion"]; //Variable del SELECT
+                        $imagen0 = "hab0.png"; //Variables para las imágenes, se ponen así pqq están en la misma carpeta
                         $imagen1 = "hab1.png";
                         $imagen2 = "hab2.png";
                         $imagen3 = "hab3.png";

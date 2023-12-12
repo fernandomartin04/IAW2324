@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoogleBooks</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+
+    <input type="text" id="titulo" placeholder="Introduce el nombre de un libro">
+    <button id="buscar">Buscar</button>
+    <div id="resultado"></div>
+    <script>
+        $(document).ready(function () {
+    $('#buscar').click(function () {
+        let titulo = $('#titulo').val();
+        let apikey = 'AIzaSyA19xaHZmgTwREBZJxsakkHYtIiwQB2zm4'
+        
+        $.ajax({
+            url: 'https://www.googleapis.com/books/v1/volumes?q=intitle:'+titulo+'&key='+apikey,
+            success: function (data) {
+                $('#resultado').html(`
+                <h2>${data.login}</h2>
+                <p>Seguidores: ${data.followers}</p>
+                <p>Seguidos: ${data.following}</p>
+                <p>Fecha de creación: ${data.created_at}</p>
+                <p>Última aportación: ${data.updated_at}</p>
+                `);
+            },
+            error: function () {
+                $('#resultado').html('<p>No se pudo obtener la información del clima.</p>');
+            },
+        });
+    });
+});
+
+    </script>
+
+</body>
+</html>

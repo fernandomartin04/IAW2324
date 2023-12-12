@@ -6,8 +6,9 @@ function reinicio() {
     document.getElementById("edni").innerHTML="";
     document.getElementById("enombre").innerHTML="";
     document.getElementById("e1apellido").innerHTML="";
-    document.getElementById("nacimiento").innerHTML="";
+    document.getElementById("enacimiento").innerHTML="";
     document.getElementById("etelefono").innerHTML="";
+    document.getElementById("eemail").innerHTML="";
     document.getElementById("edomicilio").innerHTML="";
     document.getElementById("emunicipio").innerHTML="";
     document.getElementById("eoficina").innerHTML="";
@@ -15,10 +16,34 @@ function reinicio() {
     document.getElementById("eanexo1").innerHTML="";
     document.getElementById("eanexo2").innerHTML="";
     document.getElementById("eacepto").innerHTML="";
+    document.getElementById("ecp").innerHTML="";
+
 }
+function validateEmail(){
+                
+	// Get our input reference.
+	var emailField = document.getElementById('correo');
+	
+	// Define our regular expression.
+	var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+	// Using test we can check if the text match the pattern
+	if( validEmail.test(emailField.value) ){
+		return true;
+	}else{
+		return false;
+	}
+} 
 
 function validar() {
-    reinicio();    
+    reinicio();  
+    validateEmail();  
+
+    //EMAIL
+    if (validateEmail() == false) {
+        document.getElementById("eemail").innerHTML = "El email no existe";
+        errores+=1;
+    }
 
     //ASUNTO
     var asunto = document.getElementById("asunto").value;
@@ -97,6 +122,14 @@ function validar() {
 
     if (domicilio == ""){
         document.getElementById("edomicilio").innerHTML="Requerido";
+        errores+=1;
+    }
+
+    //COD POSTAL
+    var cp = document.getElementById("cp").value;
+
+    if (cp == ""){
+        document.getElementById("ecp").innerHTML="Requerido";
         errores+=1;
     }
 

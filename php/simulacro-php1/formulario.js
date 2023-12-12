@@ -1,5 +1,6 @@
 var errores;
 
+//Con esto hago que se vacíe el <p> de los errores
 function reinicio() {
     errores = 0;
     document.getElementById("easunto").innerHTML="";
@@ -17,9 +18,13 @@ function reinicio() {
     document.getElementById("eanexo2").innerHTML="";
     document.getElementById("eacepto").innerHTML="";
     document.getElementById("ecp").innerHTML="";
+    document.getElementById("eanexo1").innerHTML="";
+    document.getElementById("eanexo2").innerHTML="";
 
 }
-function validateEmail(){
+
+//Función de validación del email
+function validateEmail(){ 
                 
 	// Get our input reference.
 	var emailField = document.getElementById('correo');
@@ -35,9 +40,39 @@ function validateEmail(){
 	}
 } 
 
+//Funcion validar anexo1
+function validarAnexo1() {
+    // Obtener nombre de archivo
+    let archivo = document.getElementById('anexo1').value,
+    // Obtener extensión del archivo
+        extension = archivo.substring(archivo.lastIndexOf('.'),archivo.length);
+    // Si la extensión obtenida no está incluida en la lista de valores
+    // del atributo "accept", mostrar un error.
+    if(document.getElementById('anexo1').getAttribute('accept').split(',').indexOf(extension) < 0) {
+        return false;
+    }
+}
+
+//Funcion validar anexo2
+function validarAnexo2() {
+    // Obtener nombre de archivo
+    let archivo = document.getElementById('anexo1').value,
+    // Obtener extensión del archivo
+        extension = archivo.substring(archivo.lastIndexOf('.'),archivo.length);
+    // Si la extensión obtenida no está incluida en la lista de valores
+    // del atributo "accept", mostrar un error.
+    if(document.getElementById('anexo2').getAttribute('accept').split(',').indexOf(extension) < 0) {
+        return false;
+    }
+}
+
+
+
 function validar() {
     reinicio();  
     validateEmail();  
+    validarAnexo1();
+    validarAnexo2();
 
     //EMAIL
     if (validateEmail() == false) {
@@ -157,17 +192,14 @@ function validar() {
         errores+=1;
     }
 
-    //ANEXOS
-    var fileSizeI = document.getElementById('anexo1').files.size;
-    var siezekiloByteI = parseInt(fileSizeI / 1024);
-    if (siezekiloByteI >  2000) {
-        document.getElementById("eanexo1").innerHTML="Demasiado grande";
+    //ANEXO1
+    if (validarAnexo1() == false) {
+        document.getElementById("eanexo1").innerHTML = "Error de formato del archivo";
     }
-
-    var fileSizeII = document.getElementById('anexo2').files.size;
-    var siezekiloByteII = parseInt(fileSizeII / 1024);
-    if (siezekiloByteII >  2000) {
-        document.getElementById("eanexo2").innerHTML="Demasiado grande";
+    
+    //ANEXO1
+    if (validarAnexo2() == false) {
+        document.getElementById("eanexo2").innerHTML = "Error de formato del archivo";
     }
 
     //CHECKBOX

@@ -36,7 +36,7 @@
     <label for="1apellido">Primer Apellido*:</label> <input type="text" id="1apellido">
     <p id="e1apellido"></p><br><br>
 
-    <label for="2apellido">Segundo Apellido*:</label> <input type="text" id="2apellido"><br><br>
+    <label for="2apellido">Segundo Apellido:</label> <input type="text" id="2apellido"><br><br>
 
     <label for="nacimiento">Fecha nacimiento (dd/mm/yyyy)*:</label> <input type="date" id="nacimiento">
     <p id="enacimiento"></p><br><br>
@@ -127,11 +127,11 @@
     <p id="einfo"></p><br><br>
 
     <label for="anexo1">Fichero Anexo I (máximo 2MB):</label> 
-    <input type="file" name="anexo1" id="anexo1">
+    <input type="file" name="anexo1" id="anexo1" accept=".jpg, .png" required onchange="validarAnexo1()">
     <p id="eanexo1"></p><br><br>
 
     <label for="anexo2">Fichero Anexo II (máximo 2MB):</label> 
-    <input type="file" name="anexo2" id="anexo2">
+    <input type="file" name="anexo2" id="anexo2" accept=".jpg, .png" required onchange="validarAnexo2()">
     <p id="eanexo2"></p><br><br>
 
     <input type="checkbox" name="acepto" id="acepto">

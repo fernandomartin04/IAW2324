@@ -24,8 +24,7 @@
                 $asunto = $_GET['asunto'];
                 $destinatario = $_GET['destinatario'];
                 $mensaje = $_GET['mensaje'];
-                $cabeceras = 'From: fernandomartin04@iesamachado.org' . "\r\n" .
-                "CC: $destinatario";
+                $cabeceras = 'From: fernandomartin04@iesamachado.org';
 
                 mail($destinatario, $asunto, $mensaje, $cabeceras);
                 echo "<p>El mensaje ha sido enviado con éxito</p>";

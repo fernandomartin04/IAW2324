@@ -38,11 +38,12 @@
                 if (!empty($matches[0])) {
                     echo "<h2>Direcciones de correo electrónico encontradas:</h2>";
                     echo "<ul>";
-                    foreach ($matches[0] as $email) {
+                    foreach (array_unique($matches[0]) as $email) {
                         echo "<li>$email</li>";
                     }
                     echo "</ul>";
-                } else {
+                } 
+                else {
                     echo "<p>No se encontraron direcciones de correo electrónico.</p>";
                 }
             }

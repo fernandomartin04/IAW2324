@@ -13,6 +13,7 @@
         <input type="text" name="dni" id="dni" placeholder="Escribe tu dni"><br><br>
         <label for="habitaciones">Elige el tipo de habitación: </label>
         <select name="habitacion" id="habitacion">
+            <option value="selecciona" >Selecciona</option>
             <option value="simple" >Simple: 65€</option>
             <option value="doble" >Doble: 80€</option>
             <option value="triple" >Triple: 140€</option>
@@ -66,6 +67,9 @@
                         $imagen3 = "hab3.png";
 
                         switch ($opcionElegida) {
+                            case "selecciona":
+                                echo "<p>Debes de seleccionar un tipo de habitación</p>";
+                                break;
                             case "simple":
                                 echo "<br><br><h2>Resumen de la compra:</h2><br><p>Nombre del comprador: $nombre</p>" . "<p>Apellido: $apellido</p>" . "<p>Dni: $dni</p>"
                                  . "<p>Su email es: $email</p>" . 

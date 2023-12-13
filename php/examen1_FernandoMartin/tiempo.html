@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air pollution</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <input type="number" id="lat" placeholder="Introduce la latitud"><br><br>
+    <input type="number" id="lon" placeholder="Introduce la longitud"><br><br>
+    <button id="buscar">Buscar</button>
+    <div id="resultado"></div>
+    
+    <script>
+        $(document).ready(function () {
+            $('#buscar').click(function () {
+                let lat = $('#lat').val();
+                let lon = $('#lon').val();
+                let apikey = '3a8c173539872e10884e75753b630719'; 
+
+                
+                $.ajax({
+                    url: `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apikey}`,
+                    success: function (data) {
+                        if (data.list[0].main.aqi == 1) {
+                            tiempo = "Bueno";
+                        }
+                        else if (data.list[0].main.aqi == 2) {
+                            tiempo = "Decente";
+                        }
+                        else if (data.list[0].main.aqi == 3) {
+                            tiempo = "Malo";
+                        }
+                        else if (data.list[0].main.aqi == 4) {
+                            tiempo = "Muy malo";
+                        }
+                        else if (data.list[0].main.aqi >= 5) {
+                            tiempo = "Horrible";
+                        }
+                        
+                        $('#resultado').html(`
+                        <p>Latitud: ${data.coord.lat} </p>
+                        <p>Longitud: ${data.coord.lon} </p>
+                        <p>Monóxido de carbono: ${data.list[0].components.co} μg/m3</p>
+                        <p>Calidad del aire: ${tiempo} </p>
+                        `);
+
+                    },
+                    error: function () {
+                        $('#resultado').html('<p>No se pudo obtener la información del clima.</p>');
+                    },
+                });
+            });
+        });
+
+    </script>
+
+
+
+
+    
+</body>
+</html>

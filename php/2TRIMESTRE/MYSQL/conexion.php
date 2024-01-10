@@ -1,5 +1,5 @@
 <?php
-$servername = "loading.thsite.top";
+$servername = "fernando.thsite.top";
 $username = "thsi_35754745";
 $password = "nBogJY9x";
 $dbname = "thsi_35754745_proyecto";

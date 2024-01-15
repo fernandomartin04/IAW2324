@@ -2,7 +2,7 @@
     include "conexion.php";
     // include "header.php";
 
-    $result = $conn->query("SELECT * FROM usuarios LIMIT 1"); //usuarios es el nombre de la tabla
+    $result = $conn->query("SELECT * FROM usuarios LIMIT 2"); //usuarios es el nombre de la tabla
     if ($result->num_rows > 0) { //Si tiene filas 1 o más...
         echo "<table><tr><th>id</th><th>username</th></tr>";
 

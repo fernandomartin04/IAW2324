@@ -6,36 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-<!-- Bootstrap Icon -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>Gestión de incidencias (CRUD)</title>
     <style>
         body {
-            background-color: #f8f9fa; /* Cambia el color de fondo del cuerpo según tus preferencias */
+            background: linear-gradient(45deg, #ffffff, #f0f8ff); /* Fondo degradado */
             font-family: 'Arial', sans-serif; /* Cambia la fuente según tus preferencias */
         }
-
-        #iucontainergrande {
-            background-color: #f0f0f0; /* Cambia el color de fondo según tus preferencias */
-            padding: 20px; /* Agrega relleno para mejorar la apariencia */
-            border-radius: 10px; /* Agrega bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una pequeña sombra */
-        }
-
-        #iuh1 {
-            color: #007bff; /* Cambia el color del texto del h1 según tus preferencias */
-        }
-
-        #iubtn1 {
-            background-color: #007bff; /* Cambia el color de fondo del botón según tus preferencias */
-            color: #ffffff; /* Cambia el color del texto del botón según tus preferencias */
-        }
-
-        #iubtn1:hover {
-            background-color: #0056b3; /* Cambia el color de fondo del botón al pasar el ratón por encima según tus preferencias */
-        }
-</style>
+    </style>
 </head>
-<body> 
+<body class="bg-light">
     

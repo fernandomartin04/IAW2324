@@ -51,8 +51,8 @@
 </head>
 <body>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-    <label for="usuario">Usuario:</label><input type="text" name="usuario"><br>
-    <label for="contrasena">Contraseña:</label><input type="password" name="contrasena"><br><br><br>
+    <label for="usuario">Usuario:</label><input type="text" name="usuario" placeholder="Introduzca su usuario"><br>
+    <label for="contrasena">Contraseña:</label><input type="password" name="contrasena" placeholder="Introduzca su contraseña"><br><br><br>
     <input type="submit" value="Login"><br><br>
     <input type="button" onclick="location.href='login.php';" value="Volver al login">
     

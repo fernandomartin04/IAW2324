@@ -63,7 +63,7 @@
         //Inluimos el archivo de conexion de php donde tenemos todo para conectarnos a la base de datos
         //include "header.php";
         
-        //Realizamos un array de lo que ha escrito el usuario tanto username como paswword para ver si ha enviado algo
+        //Realizamos un array de lo que ha escrito el usuario tanto username como password para ver si ha enviado algo
         if (array_key_exists('usuario',$_POST) OR array_key_exists('contrasena',$_POST))
         {
             //Comenzamos la conexion

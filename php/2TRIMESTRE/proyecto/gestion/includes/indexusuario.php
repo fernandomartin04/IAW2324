@@ -1,6 +1,6 @@
 <?php include "../header.php" ?>
 <div class="container mt-5">
-    <h1 class="text-center"> Gestión simple de incidencias</h1>
+    <h1 id="iuh1" class="text-center"> Gestión simple de incidencias</h1>
         <p class="text-center">
             Ejemplo sin uso de cookies ni sesiones para implementar un CRUD en PHP con MySQL
         </p>
@@ -16,5 +16,5 @@
         </div>
     </form>
   </div>
-</div>
+</div> 
 <?php include "../footer.php" ?>

@@ -31,3 +31,4 @@
     <footer class="blockquote-footer">Gestión de incidencias del <a href="https://iesamachado.org" target="_blank">IES Antonio Machado</a>. Desarrollado por Francisco Manuel Carmona Otero y Fernando Martín González</footer>
 </body>
 </html>
+ 

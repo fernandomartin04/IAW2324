@@ -10,6 +10,32 @@
 <!-- Bootstrap Icon -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>Gestión de incidencias (CRUD)</title>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Cambia el color de fondo del cuerpo según tus preferencias */
+            font-family: 'Arial', sans-serif; /* Cambia la fuente según tus preferencias */
+        }
+
+        #iucontainergrande {
+            background-color: #f0f0f0; /* Cambia el color de fondo según tus preferencias */
+            padding: 20px; /* Agrega relleno para mejorar la apariencia */
+            border-radius: 10px; /* Agrega bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una pequeña sombra */
+        }
+
+        #iuh1 {
+            color: #007bff; /* Cambia el color del texto del h1 según tus preferencias */
+        }
+
+        #iubtn1 {
+            background-color: #007bff; /* Cambia el color de fondo del botón según tus preferencias */
+            color: #ffffff; /* Cambia el color del texto del botón según tus preferencias */
+        }
+
+        #iubtn1:hover {
+            background-color: #0056b3; /* Cambia el color de fondo del botón al pasar el ratón por encima según tus preferencias */
+        }
+</style>
 </head>
-<body>
+<body> 
     

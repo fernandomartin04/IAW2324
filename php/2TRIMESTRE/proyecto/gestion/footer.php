@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -32,3 +33,8 @@
 </body>
 </html>
 
+=======
+<footer class="blockquote-footer fixed-bottom">Gestión de incidencias del <a href="https://iesamachado.org" target="_blank">IES Antonio Machado</a>. Desarrollado por Jose Luis Núñez</footer>
+</body>
+</html>
+>>>>>>> 47c15eb7986fe494d27b90daf9de09d7f29b0fa2

@@ -10,11 +10,14 @@
             <input type="submit" class="btn btn-primary mt-2" value="¡Al lío!">
         </div>
     </form>
+<<<<<<< HEAD
     <form action="includes/login.php" method="post">
         <div class="from-group text-center">
             <input type="submit" class="btn btn-primary mt-2" value="Volver al Login">
         </div>
     </form>
+=======
+>>>>>>> 47c15eb7986fe494d27b90daf9de09d7f29b0fa2
   </div>
 </div>
 <?php include "footer.php" ?>

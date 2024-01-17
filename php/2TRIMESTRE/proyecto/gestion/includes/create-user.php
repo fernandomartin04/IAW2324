@@ -22,7 +22,9 @@
           }         
     }
 ?>
-<?php $fecha = date("Y-m-d");?>
+<?php
+  $fechaHoy = date("Y-m-d"); //Esto me va a servir para no poder seleccionar días futuros
+?>
 <h1 class="text-center">Añadir incidencia</h1>
   <div class="container">
     <form action="" method="post">
@@ -44,7 +46,7 @@
       </div>
       <div class="form-group">
         <label for="alta" class="form-label">Fecha Alta</label>
-        <input type="date" name="alta"  class="form-control" value="<?php echo $fecha; ?>">
+        <input type="date" name="alta"  class="form-control" value="<?php echo $fechaHoy; ?>" max="<?php echo $fechaHoy; ?>">
       </div>
       <div class="form-group">
         <label for="comentario" class="form-label">Comentario</label>

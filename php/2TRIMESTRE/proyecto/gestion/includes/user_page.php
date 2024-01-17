@@ -3,7 +3,7 @@
 
   <div class="container">
     <h1 class="text-center" >Gestión de incidencias (CRUD)</h1>
-      <a href="create.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Añadir incidencia</a>
+      <a href="create-user.php" class='btn btn-outline-dark mb-2'> <i class="bi bi-person-plus"></i> Añadir incidencia</a>
         <table class="table table-striped table-bordered table-hover">
           <thead class="table-dark">
             <tr>

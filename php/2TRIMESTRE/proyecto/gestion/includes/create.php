@@ -36,7 +36,7 @@
       </div>
       <div class="form-group">
         <label for="aula" class="form-label">Aula</label>
-        <input type="text" name="aula"  class="form-control">
+        <input type="number" name="aula"  class="form-control">
       </div>
       <div class="form-group">
         <label for="descripcion" class="form-label">Descripcion</label>

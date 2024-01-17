@@ -1,9 +1,11 @@
 <?php  include '../header.php'?>
 
-<h1 class="text-center">Detalles de incidencia</h1>
   <div class="container">
-    <table class="table table-striped table-bordered table-hover">
-      <thead class="table-dark">
+    <div class="header-container text-white p-4 rounded shadow-sm mb-4" style="background-color: #154c79">
+        <h1 class="text-center">Detalles Incidencias</h1>
+    </div>
+    <table class="table table-bordered table-hover custom-table mt-5">
+      <thead class="text-white text-center" style="background-color: #154c79">
         <tr>
               <th scope="col">ID</th>
               <th  scope="col">Planta</th>
@@ -15,9 +17,8 @@
               <th  scope="col">Comentario</th>
         </tr>  
       </thead>
-        <tbody>
+        <tbody class="text-center">
           <tr>
-               
             <?php
               if (isset($_GET['incidencia_id'])) {
                   $incidenciaid = htmlspecialchars($_GET['incidencia_id']); 
@@ -54,7 +55,7 @@
   </div>
 
   <div class="container text-center mt-5">
-    <a href="home.php" class="btn btn-warning mt-5"> Volver </a>
+    <a href="admin_page.php" class="btn btn-warning mt-5"> Volver </a>
   <div>
 
 <?php include "../footer.php" ?>

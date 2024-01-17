@@ -39,9 +39,13 @@
         echo "<script type='text/javascript'>alert('¡Datos de la incidencia actualizados!')</script>";
     }             
 ?>
-<?php $fecha = date("Y-m-d");?>
-<h1 class="text-center">Actualizar incidencia</h1>
-  <div class="container ">
+<?php
+  $fechaHoy = date("Y-m-d"); //Esto me va a servir para no poder seleccionar días futuros
+?>
+  <div class="container">
+  <div class="header-container text-white p-4 rounded shadow-sm mb-4" style="background-color: #154c79">
+        <h1 class="text-center">Editar Incidencia</h1>
+    </div>
     <form action="" method="post">
     <div class="form-group">
         <label for="planta" class="form-label">Planta</label>
@@ -61,28 +65,29 @@
       </div>
       <div class="form-group">
         <label for="alta" class="form-label">Fecha Alta</label>
-        <input type="date" name="alta"  class="form-control" value="<?php echo $fecha; ?>">
+        <input type="date" name="alta"  class="form-control" value="<?php echo $alta; ?>" max="<?php echo $fechaHoy; ?>">
       </div>
       <div class="form-group">
         <label for="revision" >Fecha revisión</label>
-        <input type="date" name="revision" class="form-control" value="<?php echo $revision  ?>">
+        <input type="date" name="revision" class="form-control" value="<?php echo $revision  ?>" max="<?php echo $fechaHoy; ?>">
       </div>
       <div class="form-group">
         <label for="resolucion" >Fecha solución</label>
-        <input type="date" name="resolucion" class="form-control" value="<?php echo $resolucion  ?>">
+        <input type="date" name="resolucion" class="form-control" value="<?php echo $resolucion  ?>" max="<?php echo $fechaHoy; ?>">
       </div>
       <div class="form-group">
         <label for="comentario" >Comentario</label>
         <input type="text" name="comentario" class="form-control" value="<?php echo $comentario  ?>">
       </div>
-      <div class="form-group">
-         <input type="submit"  name="editar" class="btn btn-primary mt-2" value="editar">
-      </div>
+      <div class="d-flex justify-content-between">
+        <div class="form-group">
+          <input type="submit"  name="editar" class="btn btn-primary mt-2 mb-5" value="Editar">
+        </div>
+        <div class="form-group">
+          <a href="admin_page.php" class="btn btn-warning mt-2 mb-5"> Volver </a>
+        </div>
+    </div>
     </form>    
   </div>
-
-    <div class="container text-center mt-5">
-      <a href="home.php" class="btn btn-warning mt-5"> Volver </a>
-    <div>
 
 <?php include "../footer.php" ?>

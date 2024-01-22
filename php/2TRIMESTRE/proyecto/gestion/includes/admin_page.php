@@ -6,11 +6,10 @@
     </div>
     <a href="create.php" class="btn btn-success btn-lg mb-3"><i class="bi bi-plus"></i> Añadir Incidencia</a>
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover custom-table">
+    <div class="table-responsive rounded">
+        <table class="table table-bordered rounded table-hover custom-table">
             <thead class="text-white text-center" style="background-color: #154c79">
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Planta</th>
                     <th scope="col">Aula</th>
                     <th scope="col">Descripción</th>
@@ -37,7 +36,6 @@
                     $comentario = $row['comentario'];
 
                     echo "<tr>";
-                    echo "<th scope='row'>{$id}</th>";
                     echo "<td>{$planta}</td>";
                     echo "<td>{$aula}</td>";
                     echo "<td>{$descripcion}</td>";
@@ -57,7 +55,7 @@
 </div>
 
 <div class="container text-center mt-5">
-    <a href="../index.php" class="btn btn-warning">Volver</a>
+    <a href="index.php" class="btn btn-warning mb-5">Volver</a>
 </div>
 
 <?php include "../footer.php" ?>

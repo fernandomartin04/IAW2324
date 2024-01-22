@@ -26,9 +26,11 @@
   $fechaHoy = date("Y-m-d"); //Esto me va a servir para no poder seleccionar días futuros
 ?>
 
-<h1 class="text-center">Añadir incidencia</h1>
 
 <div class="container">
+<div class="header-container text-white p-4 rounded shadow-sm mb-4" style="background-color: #154c79">
+        <h1 class="text-center">Añadir Incidencia</h1>
+    </div>
   <form action="" method="post">
     <div class="form-group">
       <label for="planta" class="form-label">Planta</label>
@@ -40,7 +42,7 @@
     </div>
     <div class="form-group">
       <label for="aula" class="form-label">Aula</label>
-      <input type="number" name="aula"  class="form-control">
+      <input type="text" name="aula"  class="form-control">
     </div>
     <div class="form-group">
       <label for="descripcion" class="form-label">Descripcion</label>
@@ -62,12 +64,15 @@
       <label for="comentario" class="form-label">Comentario</label>
       <input type="text" name="comentario"  class="form-control">
     </div>
-    <div class="form-group">
-      <input type="submit"  name="crear" class="btn btn-primary mt-2" value="Añadir">
+    <div class="d-flex justify-content-between">
+        <div class="form-group">
+          <input type="submit"  name="crear" class="btn btn-primary mt-2 mb-5" value="Añadir">
+        </div>
+        <div class="form-group">
+          <a href="admin_page.php" class="btn btn-warning mt-2 mb-5"> Volver </a>
+        </div>
     </div>
-    <div class="form-group">
-      <a href="home.php" class="btn btn-warning mt-5"> Volver </a>
-    </div>
+   
   </form> 
 </div>
 

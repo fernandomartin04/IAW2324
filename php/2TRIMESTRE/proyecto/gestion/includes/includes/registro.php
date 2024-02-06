@@ -1,9 +1,9 @@
 <!-- Header -->
-<?php include "../header.php"; ?>
+<?php include "../db.php"?>
 <h1>Registro de usuario</h1>
 <form method="POST">
     <input type="text" name="usuario" placeholder="Escribe tu nombre de usuario">
-    <input type ="password" name="contrasena" placeholder="Escribe una contraseña">
+    <input type ="password" name="contrasena">
     <input type="submit" value="Registrar">
 </form>
 <?php

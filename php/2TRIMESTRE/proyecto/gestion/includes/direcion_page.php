@@ -10,13 +10,12 @@ if (!isset($_SESSION['usuario'])) {
 ?>
 
 <div class="container mt-4">
-    <?php include "barra_admin.php"?>
+    <?php include "barra_direcion.php"?>
     <div class="header-container text-white p-4 rounded shadow-sm mb-4" style="background-color: #154c79">
         <h1 class="text-center">Gestión de Incidencias (CRUD)</h1>
     </div>
-    <?php include "actualizacion_incidencia.php"?>
     <a href="create.php" class="btn btn-success btn-lg mb-3"><i class="bi bi-plus"></i> Añadir Incidencia</a>
-
+    <?php include "actualizacion_incidencia.php"?>
     <div class="table-responsive rounded">
         <table class="table table-bordered rounded table-hover custom-table">
             <thead class="text-white text-center" style="background-color: #154c79">

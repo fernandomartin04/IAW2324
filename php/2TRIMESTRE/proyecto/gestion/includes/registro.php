@@ -1,5 +1,5 @@
 <!-- Header -->
-<?php include "../db.php"?>
+<?php include "../header.php"; ?>
 <h1>Registro de usuario</h1>
 <form method="POST">
     <input type="text" name="usuario" placeholder="Escribe tu nombre de usuario">

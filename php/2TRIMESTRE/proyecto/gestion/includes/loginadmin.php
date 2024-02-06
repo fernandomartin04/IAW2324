@@ -1,4 +1,53 @@
-<?php include "../header.php"; ?>
+<?php
+include "../header.php";
+
+session_start();
+
+if ($_POST) {
+    $usuario = htmlspecialchars($_POST["usuario"]);
+    $contrasena = htmlspecialchars($_POST["contrasena"]);
+    $contrasena_codificada = base64_encode($contrasena);
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn) {
+
+        $query = "SELECT * FROM usuarios WHERE usuario='" . mysqli_real_escape_string($conn, $usuario) . "' AND contrasena='" . mysqli_real_escape_string($conn, $contrasena_codificada) . "'";
+        $result = mysqli_query($conn, $query);
+
+
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+
+
+            if ($row['rol'] == 'administrador' || $row['rol'] == 'direccion') {
+
+                $_SESSION['usuario'] = $row['usuario'];
+                $_SESSION['rol'] = $row['rol'];
+
+                if ($row['rol'] == 'administrador') {
+                    header("Location: admin_page.php");
+                    exit();
+                } else {
+                    header("Location: direcion_page.php");
+                    exit();
+                }
+            } else {
+                echo "<p class='text-danger'>Acceso denegado</p>";
+            }
+        } else {
+            echo "<p class='text-danger'>Acceso denegado</p>";
+        }
+    } else {
+
+        echo "<p class='text-danger'>Error: No se pudo conectar a MySQL.</p>";
+        echo "<p class='text-danger'>error de depuración: " . mysqli_connect_errno() . "</p>";
+        echo "<p class='text-danger'>error de depuración: " . mysqli_connect_error() . "</p>";
+    }
+}
+?>
+
+
 <body class="bg-light">
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
@@ -36,47 +85,12 @@
                 </div>
                
 
-                <?php
-                if ($_POST) {
-                    $usuario = htmlspecialchars($_POST["usuario"]);
-                    $contrasena = htmlspecialchars($_POST["contrasena"]);
-                    $contrasena_codificada = base64_encode($contrasena);
-                    
-                    $conn = new mysqli($servername, $username, $password, $dbname);   
-                        
-                    if ($conn) {
-                        // Construye y ejecuta la consulta SQL
-                        $query = "SELECT * FROM usuarios WHERE usuario='" . mysqli_real_escape_string($conn, $usuario) . "' AND contrasena='" . mysqli_real_escape_string($conn, $contrasena_codificada) . "'";
-                        $result = mysqli_query($conn, $query);
                 
-                        // Verifica si se encuentra un usuario coincidente
-                        if (mysqli_num_rows($result) == 1) {
-                            $row = mysqli_fetch_assoc($result);
-                
-                            // Verifica si el usuario es administrador o no
-                            if ($row['admin'] == 1) {
-                                // Redirige a la página para administradores
-                                header("Location: admin_page.php");
-                                exit(); // Asegura que el script se detenga después de la redirección
-                            } else {
-                                // Redirige a la página para usuarios regulares
-                                header("Location: user_page.php");
-                                exit(); // Asegura que el script se detenga después de la redirección
-                            }
-                        } else {
-                            echo "<p class='text-danger'>Acceso denegado</p>";
-                        }
-                    } else {
-                        // Muestra un error si la conexión a MySQL falla
-                        echo "<p class='text-danger'>Error: No se pudo conectar a MySQL.</p>";
-                        echo "<p class='text-danger'>error de depuración: " . mysqli_connect_errno() . "</p>";
-                        echo "<p class='text-danger'>error de depuración: " . mysqli_connect_error() . "</p>";
-                    }
-                }
-                ?>
-
             </form>
             
         </div>
     </div>
 <?php include "../footer.php"?>
+</body>
+
+

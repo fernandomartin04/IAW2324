@@ -1,15 +1,15 @@
 <?php
-$queryTotal = "SELECT COUNT(*) AS total FROM incidencias";
-$queryResueltas = "SELECT COUNT(*) AS resueltas FROM incidencias WHERE estado = 'resuelta'";
-$queryPendientes = "SELECT COUNT(*) AS pendientes FROM incidencias WHERE estado = 'pendiente'";
+    $queryTotal = "SELECT COUNT(*) AS total FROM incidencias";
+    $queryResueltas = "SELECT COUNT(*) AS resueltas FROM incidencias WHERE estado = 'resuelta'";
+    $queryPendientes = "SELECT COUNT(*) AS pendientes FROM incidencias WHERE estado = 'pendiente'";
 
-$resultadoTotal = mysqli_query($conn, $queryTotal);
-$resultadoResueltas = mysqli_query($conn, $queryResueltas);
-$resultadoPendientes = mysqli_query($conn, $queryPendientes);
+    $resultadoTotal = mysqli_query($conn, $queryTotal);
+    $resultadoResueltas = mysqli_query($conn, $queryResueltas);
+    $resultadoPendientes = mysqli_query($conn, $queryPendientes);
 
-$totalIncidencias = mysqli_fetch_assoc($resultadoTotal)['total'];
-$resueltas = mysqli_fetch_assoc($resultadoResueltas)['resueltas'];
-$pendientes = mysqli_fetch_assoc($resultadoPendientes)['pendientes'];
+    $totalIncidencias = mysqli_fetch_assoc($resultadoTotal)['total'];
+    $resueltas = mysqli_fetch_assoc($resultadoResueltas)['resueltas'];
+    $pendientes = mysqli_fetch_assoc($resultadoPendientes)['pendientes'];
 ?>
 
 <div class="container mt-4">

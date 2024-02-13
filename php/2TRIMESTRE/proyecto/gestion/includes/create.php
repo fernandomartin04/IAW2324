@@ -1,4 +1,11 @@
-<?php include "../header.php" ?>
+<?php include "../header.php" 
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
 
 <?php 
 if(isset($_POST['crear'])) {

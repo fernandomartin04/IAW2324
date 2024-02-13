@@ -15,16 +15,15 @@ if ($_POST) {
         $query = "SELECT * FROM usuarios WHERE usuario='" . mysqli_real_escape_string($conn, $usuario) . "' AND contrasena='" . mysqli_real_escape_string($conn, $contrasena_codificada) . "'";
         $result = mysqli_query($conn, $query);
 
-
+        //Si coinciden los daos introducidos con los que hay en la tabla de usuarios, continua
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
 
-
+            //Ahora vemos a que rol tiene el usuario
             if ($row['rol'] == 'administrador' || $row['rol'] == 'direccion') {
-
                 $_SESSION['usuario'] = $row['usuario'];
                 $_SESSION['rol'] = $row['rol'];
-
+                //Si es adminisrador, redirige a la página de administradores
                 if ($row['rol'] == 'administrador') {
                     header("Location: admin_page.php");
                     exit();

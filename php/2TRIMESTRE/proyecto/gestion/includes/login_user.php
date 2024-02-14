@@ -15,7 +15,7 @@ if ($_POST) {
         $query = "SELECT * FROM usuarios WHERE usuario='" . mysqli_real_escape_string($conn, $usuario) . "' AND contrasena='" . mysqli_real_escape_string($conn, $contrasena_codificada) . "'";
         $result = mysqli_query($conn, $query);
 
-        //Si coinciden los daos introducidos con los que hay en la tabla de usuarios, continua
+        //Si coinciden los datos introducidos con los que hay en la tabla de usuarios, continua
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
 

@@ -1,9 +1,10 @@
 <?php 
+
 include "../header.php";
 
 session_start();
 
-if (!isset($_SESSION['usuario'])) {
+if (isset($_SESSION['usuario'] != 'administrador')) {
     header("Location: login.php");
     exit();
 }

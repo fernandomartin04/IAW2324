@@ -1,7 +1,7 @@
 <?php
+session_start();
 include "../header.php";
 
-session_start();
 
 if ($_POST) {
     $usuario = htmlspecialchars($_POST["usuario"]);

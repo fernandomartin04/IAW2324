@@ -1,13 +1,14 @@
-<?php include "../header.php"; ?>
+<?php 
+session_start(); // Inicia la sesión al principio del archivo
 
-<?php
-session_start();
-
+// Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php");
+    header("Location: login.php"); // Redirige al usuario a la página de inicio de sesión si no ha iniciado sesión
     exit();
 }
+include "../header.php"; ?>
 
+<?php
 
 if ($_POST) {
     $usuario = htmlspecialchars($_POST["usuario"]);

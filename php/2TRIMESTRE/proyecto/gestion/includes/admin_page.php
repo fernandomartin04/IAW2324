@@ -1,13 +1,14 @@
 <?php 
+session_start(); // Inicia la sesión al principio del archivo
+
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php"); // Redirige al usuario a la página de inicio de sesión si no ha iniciado sesión
+    exit();
+}
 
 include "../header.php";
-include "verificar.php"; //
-/*session_start();
 
-if (isset($_SESSION['usuario'] != 'administrador')) {
-    header("Location: login.php");
-    exit();
-}*/
 ?>
 
 <div class="container mt-4">

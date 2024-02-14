@@ -1,4 +1,4 @@
-<?php include "verificar.php";
+<?php
 $servername = 'sql307.thsite.top';   
 $username = 'thsi_35748541';   
 $password = "GkIoSmUV";   

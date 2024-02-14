@@ -1,6 +1,6 @@
 
-<?php 
-include "../header.php" 
+<?php include "../header.php" 
+    session_start();
 ?>
 
 <?php 

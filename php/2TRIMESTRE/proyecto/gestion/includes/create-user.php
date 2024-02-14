@@ -1,6 +1,4 @@
-<?php include "../header.php" 
-include "verificar.php"
-?>
+<?php include "../header.php" ?>
 
 <?php 
 if(isset($_POST['crear'])) {

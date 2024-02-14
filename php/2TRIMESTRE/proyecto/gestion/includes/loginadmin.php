@@ -2,7 +2,6 @@
 session_start();
 include "../header.php";
 
-
 if ($_POST) {
     $usuario = htmlspecialchars($_POST["usuario"]);
     $contrasena = htmlspecialchars($_POST["contrasena"]);
@@ -15,12 +14,11 @@ if ($_POST) {
         $query = "SELECT * FROM usuarios WHERE usuario='" . mysqli_real_escape_string($conn, $usuario) . "' AND contrasena='" . mysqli_real_escape_string($conn, $contrasena_codificada) . "'";
         $result = mysqli_query($conn, $query);
 
-
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
 
-
-            if ($row['rol'] == 'administrador' || $row['rol'] == 'direccion') {
+            // Verifica si el usuario es administrador, dirección, o profesor
+            if ($row['rol'] == 'administrador' || $row['rol'] == 'direccion' || $row['rol'] == 'profesor') {
 
                 $_SESSION['usuario'] = $row['usuario'];
                 $_SESSION['rol'] = $row['rol'];
@@ -28,24 +26,27 @@ if ($_POST) {
                 if ($row['rol'] == 'administrador') {
                     header("Location: admin_page.php");
                     exit();
-                } else {
-                    header("Location: direcion_page.php");
+                } elseif ($row['rol'] == 'direccion') {
+                    header("Location: direccion_page.php");
+                    exit();
+                } elseif ($row['rol'] == 'profesor') {
+                    header("Location: user_page.php");
                     exit();
                 }
             } else {
-                echo "<p class='text-danger'>Acceso denegado</p>";
+                echo "<div class='alert alert-danger text-center' role='alert'>Acceso denegado</div>";
             }
         } else {
-            echo "<p class='text-danger'>Acceso denegado</p>";
+            echo "<div class='alert alert-danger text-center' role='alert'>Acceso denegado</div>";
         }
     } else {
-
-        echo "<p class='text-danger'>Error: No se pudo conectar a MySQL.</p>";
-        echo "<p class='text-danger'>error de depuración: " . mysqli_connect_errno() . "</p>";
-        echo "<p class='text-danger'>error de depuración: " . mysqli_connect_error() . "</p>";
+        echo "<div class='alert alert-danger text-center' role='alert'>Error: No se pudo conectar a MySQL.</div>";
+        echo "<div class='alert alert-danger text-center' role='alert'>Error de depuración: " . mysqli_connect_errno() . "</div>";
+        echo "<div class='alert alert-danger text-center' role='alert'>Error de depuración: " . mysqli_connect_error() . "</div>";
     }
 }
 ?>
+
 
 
 

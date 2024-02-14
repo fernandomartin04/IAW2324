@@ -1,13 +1,13 @@
 <?php 
 
 include "../header.php";
-
-session_start();
+include "verificar.php"; //
+/*session_start();
 
 if (isset($_SESSION['usuario'] != 'administrador')) {
     header("Location: login.php");
     exit();
-}
+}*/
 ?>
 
 <div class="container mt-4">

@@ -23,7 +23,7 @@ if ($_POST) {
             if ($row['rol'] == 'administrador' || $row['rol'] == 'direccion') {
                 $_SESSION['usuario'] = $row['usuario'];
                 $_SESSION['rol'] = $row['rol'];
-                //Si es adminisrador, redirige a la página de administradores
+                //Si es adminisrador, redirige a la página de administradores 
                 if ($row['rol'] == 'administrador') {
                     header("Location: admin_page.php");
                     exit();

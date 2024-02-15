@@ -83,7 +83,15 @@ $fechaHoy = date("Y-m-d"); //Esto me va a servir para no poder seleccionar días
                 <input type="submit"  name="crear" class="btn btn-primary mt-2 mb-5" value="Añadir">
             </div>
             <div class="form-group">
-            <a href="<?php echo ($_SESSION['rol'] == 'administrador') ? 'admin_page.php' : (($_SESSION['rol'] == 'direcion') ? 'direccion_page.php' : 'user_page.php'); ?>" class="btn btn-warning mt-2 mb-5"> Volver </a>            </div>
+                <?php 
+                    $volverUrl = 'user_page.php';
+                    if ($_SESSION['rol'] == 'administrador'){
+                        $volverUrl = 'admin_page.php';
+                    } else if ($_SESSION['rol'] == 'direccion') {
+                        $volverUrl = 'direcion_page.php'
+                    }
+                ?>
+            <a href="<?php ; ?>" class="btn btn-warning mt-2 mb-5"> Volver </a>            </div>
         </div>
     </form> 
 </div>

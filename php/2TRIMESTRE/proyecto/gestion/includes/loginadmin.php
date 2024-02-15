@@ -27,7 +27,7 @@ if ($_POST) {
                     header("Location: admin_page.php");
                     exit();
                 } elseif ($row['rol'] == 'direccion') {
-                    header("Location: direccion_page.php");
+                    header("Location: direcion_page.php");
                     exit();
                 } elseif ($row['rol'] == 'profesor') {
                     header("Location: user_page.php");

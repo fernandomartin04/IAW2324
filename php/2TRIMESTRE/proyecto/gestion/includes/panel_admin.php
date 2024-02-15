@@ -1,9 +1,8 @@
 <?php 
 session_start(); // Inicia la sesión al principio del archivo
 
-// Verifica si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php"); // Redirige al usuario a la página de inicio de sesión si no ha iniciado sesión
+if (($_SESSION['rol'] != 'administrador')) {
+    header("Location: login.php"); 
     exit();
 }
 include "../header.php"; ?>

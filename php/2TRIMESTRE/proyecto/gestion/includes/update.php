@@ -1,7 +1,7 @@
 <?php
 session_start(); // Inicia la sesión al principio del archivo
 
-if (($_SESSION['rol'] == 'profesor')) {
+if (($_SESSION['rol'] != 'administrador' && $_SESSION['rol'] != 'direccion')) {
     header("Location: login.php"); 
     exit();
 }
@@ -118,15 +118,16 @@ $fechaHoy = date("Y-m-d");
                 <input type="submit" name="editar" class="btn btn-primary mt-2 mb-5" value="Editar">
             </div>
             <div class="form-group">
+                <!-- Según la sesión del usuario lo dirijo a una página u otra -->
                 <?php 
-                    $volverUrl = 'user_page.php';
+                    $volverUrl = 'login.php';
                     if ($_SESSION['rol'] == 'administrador'){
                         $volverUrl = 'admin_page.php';
                     } else if ($_SESSION['rol'] == 'direccion') {
-                        $volverUrl = 'direcion_page.php'
+                        $volverUrl = 'direcion_page.php';
                     }
                 ?>
-                <a href="admin_page.php" class="btn btn-warning mt-2 mb-5">Volver</a>
+                <a href="<?php echo $volverUrl; ?>" class="btn btn-warning mt-2 mb-5">Volver</a>
             </div>
         </div>
     </form>    

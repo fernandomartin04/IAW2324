@@ -1,9 +1,8 @@
 <?php
 session_start(); // Inicia la sesión al principio del archivo
-
-// Verifica si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php"); // Redirige al usuario a la página de inicio de sesión si no ha iniciado sesión
+//Verifico si es de direccion o administrador, sino fuera
+if (($_SESSION['rol'] != 'administrador' && $_SESSION['rol'] != 'direccion')) {
+    header("Location: login.php"); 
     exit();
 }
 include '../header.php';
@@ -68,7 +67,16 @@ if (isset($_GET['incidencia_id'])) {
 ?>
 
 <div class="container text-center mt-5">
-    <a href="admin_page.php" class="btn btn-warning mt-5">Volver</a>
+    <!-- Según la sesión del usuario lo dirijo a una página u otra -->
+        <?php 
+            $volverUrl = 'login.php';
+            if ($_SESSION['rol'] == 'administrador'){
+                $volverUrl = 'admin_page.php';
+            } else if ($_SESSION['rol'] == 'direccion') {
+                $volverUrl = 'direcion_page.php';
+            }
+        ?>
+    <a href="<?php echo $volverUrl; ?>" class="btn btn-warning mt-5">Volver</a>
 <div>
 
 <?php include "../footer.php" ?>

@@ -83,15 +83,18 @@ $fechaHoy = date("Y-m-d"); //Esto me va a servir para no poder seleccionar días
                 <input type="submit"  name="crear" class="btn btn-primary mt-2 mb-5" value="Añadir">
             </div>
             <div class="form-group">
+                <!-- Según la sesión del usuario lo dirijo a una página u otra -->
+
                 <?php 
                     $volverUrl = 'user_page.php';
                     if ($_SESSION['rol'] == 'administrador'){
                         $volverUrl = 'admin_page.php';
                     } else if ($_SESSION['rol'] == 'direccion') {
-                        $volverUrl = 'direcion_page.php'
+                        $volverUrl = 'direcion_page.php';
                     }
-                ?>
-            <a href="<?php ; ?>" class="btn btn-warning mt-2 mb-5"> Volver </a>            </div>
+                ?> 
+                <a href="<?php echo $volverUrl; ?>" class="btn btn-warning mt-2 mb-5"> Volver </a>
+            </div>
         </div>
     </form> 
 </div>

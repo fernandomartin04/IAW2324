@@ -81,7 +81,8 @@ if ($_POST) {
                         </thead>
                         <tbody class="text-center">
                             <?php
-                            $query = "SELECT * FROM usuarios";
+                            $miUsuario = $_SESSION['usuario'];
+                            $query = "SELECT * FROM usuarios WHERE usuario != '$miUsuario'";
                             $result = mysqli_query($conn, $query);
 
                             while ($row = mysqli_fetch_assoc($result)) {

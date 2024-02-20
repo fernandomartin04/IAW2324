@@ -54,7 +54,7 @@ if ($_POST) {
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
             <form class="col-sm-6 border p-4 rounded shadow" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <h2 class="text-center mb-4">Autenticación Admin</h2>
+                <h2 class="text-center mb-4">Autenticación</h2>
                 <div class="input-group mb-3">
                     <span class="input-group-text">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

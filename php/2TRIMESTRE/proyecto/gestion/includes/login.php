@@ -7,6 +7,4 @@
     <a href="loginadmin.php" class="btn btn-primary custom-button m-2">Inicio de sesión</a>
   </div>
 </div>
-
-
 <?php include "../footer.php"; ?>

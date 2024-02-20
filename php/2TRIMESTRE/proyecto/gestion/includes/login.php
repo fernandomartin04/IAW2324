@@ -1,3 +1,4 @@
+<?php include "cierraSesion.php" ?>
 <?php include "../header.php"; ?>
 
 <div class="container d-flex align-items-center justify-content-center vh-100">

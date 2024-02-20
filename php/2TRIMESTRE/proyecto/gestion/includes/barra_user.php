@@ -7,7 +7,13 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="user_page.php">Incidencias</a>
       <a class="nav-item nav-link" href="create-user.php">Añadir</a>
+
+      <?php
+        session_destroy()
+      ?>
+      <a href="<?php echo $cierraSesion; ?>" class="nav-item nav-link"> Login </a>
       <a class="nav-item nav-link" href="login.php">Login</a>
+      <a class="nav-item nav-link" href="login.php">Cerrar sesión</a>
     </div>
   </div>
 </nav>

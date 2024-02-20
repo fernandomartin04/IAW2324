@@ -15,6 +15,8 @@ session_start(); // Inicia la sesión al principio del archivo
 
         if ($id == $idUsuarioSesion) {
             echo "No puedes eliminar tu propio usuario.";
+            header("Location: panel_admin.php");
+            exit();
         } else {
             // Continuo con la eliminación
             if ($conn) {

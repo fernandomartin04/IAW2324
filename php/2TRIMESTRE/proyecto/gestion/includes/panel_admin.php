@@ -12,18 +12,33 @@ include "../header.php"; ?>
 if ($_POST) {
     $usuario = htmlspecialchars($_POST["usuario"]);
     $contrasena = htmlspecialchars($_POST["contrasena"]);
+    $email = htmlspecialchars($_POST["email"]);
     $rol = htmlspecialchars($_POST["rol"]);
     $contrasena_codificada = base64_encode($contrasena);
 
+    //Funcion del email de la validacion
+    function validateEmail($email) {
+        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+    }
+
+    $validacionEmail = validateEmail($email);
+
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn) {
-        $query = "INSERT INTO usuarios (usuario, contrasena, rol) VALUES ('$usuario', '$contrasena_codificada', '$rol')";
-        if (mysqli_query($conn, $query)) {
-            echo "<p class='text-success'>Usuario registrado exitosamente.</p>";
-        } else {
-            echo "<p class='text-danger'>Error al registrar usuario: " . mysqli_error($conn) . "</p>";
+        if (!$validacionEmail) {
+            echo "<script type='text/javascript'>alert('¡No es correcto el correo!')</script>"; 
         }
-    } else {
+        else {
+            $query = "INSERT INTO usuarios (usuario, contrasena, rol, correo) VALUES ('$usuario', '$contrasena_codificada', '$rol', '$email')";
+            if (mysqli_query($conn, $query)) {
+                echo "<p class='text-success'>Usuario registrado exitosamente.</p>";
+            } else {
+                echo "<p class='text-danger'>Error al registrar usuario: " . mysqli_error($conn) . "</p>";
+            }
+        }
+            
+    } 
+    else {
         echo "<p class='text-danger'>Error: No se pudo conectar a MySQL.</p>";
         echo "<p class='text-danger'>Error de depuración: " . mysqli_connect_error() . "</p>";
     }
@@ -49,6 +64,10 @@ if ($_POST) {
                     <div class="form-group mt-4">
                         <label for="contrasena">Contraseña</label>
                         <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="usuario">Correo</label>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Ingresa tu usuario" required>
                     </div>
                     <div class="form-group mt-4">
                         <label for="rol" class="form-label">Rol</label>

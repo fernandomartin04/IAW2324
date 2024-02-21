@@ -31,6 +31,9 @@ include "../header.php";
             </thead>
             <tbody class="text-center">
                 <?php
+
+
+    
                 $miUser = $_SESSION['usuario'];
                 $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
                           FROM incidencias 

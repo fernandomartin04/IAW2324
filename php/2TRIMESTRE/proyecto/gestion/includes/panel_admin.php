@@ -28,6 +28,9 @@ if ($_POST) {
         if (!$validacionEmail) {
             echo "<script type='text/javascript'>alert('¡No es correcto el correo!')</script>"; 
         }
+        else if ($contrasena != $contrasena2) {
+            echo "<script type='text/javascript'>alert('¡No son iguales las contraseñas!')</script>";
+        }
         else {
             $query = "INSERT INTO usuarios (usuario, contrasena, rol, correo) VALUES ('$usuario', '$contrasena_codificada', '$rol', '$email')";
             if (mysqli_query($conn, $query)) {
@@ -64,6 +67,10 @@ if ($_POST) {
                     <div class="form-group mt-4">
                         <label for="contrasena">Contraseña</label>
                         <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="contrasena">Repetir contraseña</label>
+                        <input type="password" class="form-control" name="contrasena2" id="contrasena2" placeholder="Repite tu contraseña" required>
                     </div>
                     <div class="form-group mt-4">
                         <label for="usuario">Correo</label>

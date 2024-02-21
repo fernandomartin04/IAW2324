@@ -3,8 +3,8 @@
 session_start(); // Inicia la sesión al principio del archivo
 
 // Verifica si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php"); // Redirige al usuario a la página de inicio de sesión si no ha iniciado sesión
+if (($_SESSION['rol'] != 'administrador' && $_SESSION['rol'] != 'direccion')) {
+    header("Location: login.php"); 
     exit();
 }
 
@@ -21,9 +21,11 @@ if(isset($_POST['crear'])) {
     $alta = htmlspecialchars($_POST['alta']);
     $revision = htmlspecialchars($_POST['revision']);
     $resolucion = htmlspecialchars($_POST['resolucion']);
-  
-    $query= "INSERT INTO incidencias(id_planta, id_aula, descripcion, fecha_alta, comentarios, fecha_revision, fecha_resolucion) 
-             VALUES('{$planta}','{$aula}','{$descripcion}','{$alta}','{$comentario}','{$revision}','{$resolucion}')";
+    
+    $user = $_SESSION['usuario']; 
+
+    $query= "INSERT INTO incidencias(id_planta, id_aula, descripcion, fecha_alta, comentarios, fecha_revision, fecha_resolucion, user) 
+             VALUES('$planta','$aula','$descripcion','$alta','$comentario','$revision','$resolucion','$user')";
 
     $resultado = mysqli_query($conn,$query);
     

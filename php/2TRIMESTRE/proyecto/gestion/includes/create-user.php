@@ -1,7 +1,7 @@
 <?php 
 session_start(); // Inicia la sesión al principio del archivo
 
-if (($_SESSION['rol'] != 'administrador')) {
+if (($_SESSION['rol'] != 'profesor')) {
     header("Location: login.php"); 
     exit();
 }
@@ -14,9 +14,11 @@ if(isset($_POST['crear'])) {
     $descripcion = htmlspecialchars($_POST['descripcion']);
     $comentario = htmlspecialchars($_POST['comentario']);
     $alta = htmlspecialchars($_POST['alta']);
-  
-    $query= "INSERT INTO incidencias(id_planta, id_aula, descripcion, fecha_alta, comentarios) 
-             VALUES('{$planta}','{$aula}','{$descripcion}','{$alta}','{$comentario}')";
+    
+    $user = $_SESSION['usuario']; 
+
+    $query= "INSERT INTO incidencias(id_planta, id_aula, descripcion, fecha_alta, comentarios, user) 
+             VALUES('$planta','$aula','$descripcion','$alta','$comentario','$user')";
     
     $resultado = mysqli_query($conn,$query);
     

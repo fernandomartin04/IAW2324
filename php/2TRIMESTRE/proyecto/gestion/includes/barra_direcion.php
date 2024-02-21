@@ -9,5 +9,8 @@
       <a class="nav-item nav-link" href="create.php">Añadir</a>
       <a class="nav-item nav-link" href="login.php">Login</a>
     </div>
+    <span class="navbar-text ms-auto" style="color: black; text-decoration: underline;">
+      <?php echo $_SESSION["usuario"]; ?>
+    </span>
   </div>
 </nav>

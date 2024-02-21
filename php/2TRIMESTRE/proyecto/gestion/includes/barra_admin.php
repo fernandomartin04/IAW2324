@@ -7,7 +7,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="admin_page.php">Incidencias</a>
       <a class="nav-item nav-link" href="create.php">Añadir</a>
-      <a class="nav-item nav-link" href="login.php">Login</a>
+      <a class="nav-item nav-link" href="login.php">Login/Logout</a>
       <a class="nav-item nav-link" href="panel_admin.php">Panel Admin</a>
     </div>
     <span class="navbar-text ms-auto" style="color: black; text-decoration: underline;">

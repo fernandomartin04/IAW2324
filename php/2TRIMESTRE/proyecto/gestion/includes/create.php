@@ -133,5 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
     actualizarOpcionesAula();
 });
 </script>
+<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
 
 <?php include "../footer.php" ?>

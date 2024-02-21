@@ -35,7 +35,8 @@ include "../header.php"?>
                           FROM incidencias 
                           INNER JOIN plantas ON incidencias.id_planta = plantas.id 
                           INNER JOIN aulas ON incidencias.id_aula = aulas.id
-                          WHERE user = '$miUser'";
+                          WHERE user = '$miUser'
+                          ORDER BY fecha_alta";
                 
                 $vista_incidencias = mysqli_query($conn, $query);
 
@@ -63,5 +64,6 @@ include "../header.php"?>
 <div class="container text-center mt-5 mb-5">
     <a href="indexusuario.php" class="btn btn-warning">Volver</a>
 </div>
+<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
 
 <?php include "../footer.php" ?>

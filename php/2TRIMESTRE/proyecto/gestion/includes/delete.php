@@ -13,7 +13,7 @@ include "../header.php" ?>
          $query = "DELETE FROM incidencias WHERE id = {$id}"; 
          $delete_query= mysqli_query($conn, $query);
          // header("Location: home.php");
-         echo "<script>window.location='admin_page.php';</script>"; //hay que hacer algo para que no mande ahí, sino los usuarios pueden borrar
+         echo "<script>window.location='admin_page.php';</script>"; 
      }
 ?>
 <?php include "../footer.php" ?>

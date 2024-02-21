@@ -15,7 +15,7 @@ if ($_POST) {
     $email = htmlspecialchars($_POST["email"]);
     $rol = htmlspecialchars($_POST["rol"]);
     $contrasena_codificada = base64_encode($contrasena);
-
+ 
     //Funcion del email de la validacion
     function validateEmail($email) {
         return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
@@ -102,6 +102,8 @@ if ($_POST) {
                                 <th scope="col">ID</th> 
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Rol</th>
+                                <th scope="col">Incidencias</th>
+
                                 <th scope="col" colspan="2" class="text-center">Operaciones</th>
                             </tr>
                         </thead>
@@ -110,16 +112,21 @@ if ($_POST) {
                             $miUsuario = $_SESSION['usuario'];
                             $query = "SELECT * FROM usuarios WHERE usuario != '$miUsuario'";
                             $result = mysqli_query($conn, $query);
-
+                            /*********/
+                            
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $id = $row['id_usuario'];
                                 $usuario = $row['usuario'];
                                 $rol = $row['rol'];
+                                $numeroIncidencias = "SELECT COUNT(*) AS total FROM incidencias WHERE user = $usuario";
+                                $resultadoIncidencias = mysqli_query($conn, $numeroIncidencias);
+                                $totalIncidencias = mysqli_fetch_assoc($resultadoIncidencias)['total'];
 
                                 echo "<tr>";
                                 echo "<td>{$id}</td>";
                                 echo "<td>{$usuario}</td>";
-                                echo "<td>{$rol}</td>";
+                                echo "<td>{$rol}</td>";  
+                                echo "<td>{$totalIncidencias}</td>";  
                                 echo "<td class='text-center'><a href='eliminar_usuario.php?id={$id}' class='btn btn-danger'><i class='bi bi-trash'></i> Eliminar</a></td>";
                                 echo "</tr>";
                             }
@@ -135,5 +142,6 @@ if ($_POST) {
 <div class="container text-center mt-5">
     <a href="admin_page.php" class="btn btn-warning mb-5">Volver</a>
 </div>
+<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
 
 <?php include "../footer.php" ?>

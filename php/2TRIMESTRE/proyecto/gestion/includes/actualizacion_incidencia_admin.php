@@ -1,8 +1,7 @@
 <?php
-$miUser = $_SESSION['usuario'];
-$queryTotal = "SELECT COUNT(*) AS total FROM incidencias WHERE user = '$miUser'";
-$queryResueltas = "SELECT COUNT(*) AS resueltas FROM incidencias WHERE estado = 'resuelta' AND user = '$miUser'";
-$queryPendientes = "SELECT COUNT(*) AS pendientes FROM incidencias WHERE estado = 'pendiente' AND user = '$miUser'";
+$queryTotal = "SELECT COUNT(*) AS total FROM incidencias";
+$queryResueltas = "SELECT COUNT(*) AS resueltas FROM incidencias WHERE estado = 'resuelta'";
+$queryPendientes = "SELECT COUNT(*) AS pendientes FROM incidencias WHERE estado = 'pendiente'";
 
 $resultadoTotal = mysqli_query($conn, $queryTotal);
 $resultadoResueltas = mysqli_query($conn, $queryResueltas);

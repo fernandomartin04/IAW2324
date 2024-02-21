@@ -33,14 +33,14 @@ include "../header.php";
                 <?php
 
 
-    
+    /*************************************************************/ 
                 $miUser = $_SESSION['usuario'];
                 $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
                           FROM incidencias 
-                          WHERE $miUser = 'user'
                           INNER JOIN plantas ON incidencias.id_planta = plantas.id 
-                          INNER JOIN aulas ON incidencias.id_aula = aulas.id" ;
-                
+                          INNER JOIN aulas ON incidencias.id_aula = aulas.id 
+                          WHERE user = '$miUser'"; 
+    /*************************************************************/            
                 $vista_incidencias = mysqli_query($conn, $query);
 
                 while ($row = mysqli_fetch_assoc($vista_incidencias)) {

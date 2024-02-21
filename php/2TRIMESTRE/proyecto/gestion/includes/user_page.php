@@ -29,10 +29,13 @@ include "../header.php"?>
             </thead>
             <tbody class="text-center">
                 <?php
+                $miUser = $_SESSION['usuario'];
+
                 $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
                           FROM incidencias 
                           INNER JOIN plantas ON incidencias.id_planta = plantas.id 
-                          INNER JOIN aulas ON incidencias.id_aula = aulas.id";
+                          INNER JOIN aulas ON incidencias.id_aula = aulas.id
+                          WHERE user = '$miUser'";
                 
                 $vista_incidencias = mysqli_query($conn, $query);
 

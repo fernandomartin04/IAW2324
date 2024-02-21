@@ -15,7 +15,7 @@ include "../header.php";
     <div class="header-container text-white p-4 rounded shadow-sm mb-4" style="background-color: #154c79">
         <h1 class="text-center">Gestión de Incidencias (CRUD)</h1>
     </div>
-    <?php include "actualizacion_incidencia.php"?>
+    <?php include "actualizacion_incidencia_admin.php"?>
     <a href="create.php" class="btn btn-success btn-lg mb-3"><i class="bi bi-plus"></i> Añadir Incidencia</a>
 
     <div class="table-responsive rounded">

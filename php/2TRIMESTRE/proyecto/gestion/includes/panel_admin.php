@@ -55,7 +55,7 @@ if ($_POST) {
     </div>
     <div id="contenido" class="d-flex justify-content-around">
         <div id="registrar">
-            <div class="container">
+        <div class="container">
                 <div class="header-container text-white p-4 rounded shadow-sm mb-1" style="background-color: #154c79">
                     <h1 class="text-center">Registrar</h1>
                 </div>
@@ -74,7 +74,7 @@ if ($_POST) {
                     </div>
                     <div class="form-group mt-4">
                         <label for="usuario">Correo</label>
-                        <input type="text" class="form-control" name="email" id="email" placeholder="Ingresa tu usuario" required>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Ingresa tu correo" required>
                     </div>
                     <div class="form-group mt-4">
                         <label for="rol" class="form-label">Rol</label>
@@ -103,24 +103,24 @@ if ($_POST) {
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Rol</th>
                                 <th scope="col">Incidencias</th>
-
                                 <th scope="col" colspan="2" class="text-center">Operaciones</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
                             <?php
                             $miUsuario = $_SESSION['usuario'];
-                            $query = "SELECT * FROM usuarios WHERE usuario != '$miUsuario'";
+                            $query = "SELECT usuarios.id_usuario, usuarios.usuario, usuarios.rol, COUNT(incidencias.id) as total_incidencias
+                                      FROM usuarios 
+                                      LEFT JOIN incidencias ON usuarios.usuario = incidencias.user
+                                      WHERE usuarios.usuario != '$miUsuario'
+                                      GROUP BY usuarios.id_usuario";
                             $result = mysqli_query($conn, $query);
-                            /*********/
                             
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $id = $row['id_usuario'];
                                 $usuario = $row['usuario'];
                                 $rol = $row['rol'];
-                                $numeroIncidencias = "SELECT COUNT(*) AS total FROM incidencias WHERE user = $usuario";
-                                $resultadoIncidencias = mysqli_query($conn, $numeroIncidencias);
-                                $totalIncidencias = mysqli_fetch_assoc($resultadoIncidencias)['total'];
+                                $totalIncidencias = $row['total_incidencias'];
 
                                 echo "<tr>";
                                 echo "<td>{$id}</td>";
@@ -144,4 +144,4 @@ if ($_POST) {
 </div>
 <p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
 
-<?php include "../footer.php" ?>
+<?php include "../footer.php"; ?>

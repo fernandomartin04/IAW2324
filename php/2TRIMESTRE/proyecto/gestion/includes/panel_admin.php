@@ -114,6 +114,8 @@ if ($_POST) {
                                       LEFT JOIN incidencias ON usuarios.usuario = incidencias.user
                                       WHERE usuarios.usuario != '$miUsuario'
                                       GROUP BY usuarios.id_usuario";
+
+                                      
                             $result = mysqli_query($conn, $query);
                             
                             while ($row = mysqli_fetch_assoc($result)) {

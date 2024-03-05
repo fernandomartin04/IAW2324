@@ -26,7 +26,7 @@ include "../header.php";
                     <th scope="col">Aula</th>
                     <th scope="col">Descripción</th>
                     <th scope="col"><a href="?ordenar=fecha_alta">Fecha Alta</a></th>  
-                    <th scope="col">Fecha Revisión</th>
+                    <th scope="col"><a href="?ordenar=fecha_revision">Fecha Revisión</a></th>
                     <th scope="col"><a href="?ordenar=fecha_resolucion">Fecha Solución</a></th>
                     <th scope="col">Comentario</th>
                     <th scope="col" colspan="3" class="text-center">Operaciones</th>
@@ -34,7 +34,14 @@ include "../header.php";
             </thead>
             <tbody class="text-center">
                 <?php
-                // Establece el valor por defecto de la variable de orden
+
+                //defecto
+
+                $orden = 'fecha_alta';
+                if(isset($_GET['ordenar'])) {
+                    $orden = $_GET['ordenar'];
+                }
+/*                // Establece el valor por defecto de la variable de orden
                 $orden = isset($_GET['ordenar']) ? $_GET['ordenar'] : '';
 
                 // Si no se proporciona un parámetro de orden, deja la cadena ORDER BY vacía
@@ -45,7 +52,12 @@ include "../header.php";
                           INNER JOIN plantas ON incidencias.id_planta = plantas.id 
                           INNER JOIN aulas ON incidencias.id_aula = aulas.id
                           $orderClause";
-
+*/  
+                $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
+                FROM incidencias 
+                INNER JOIN plantas ON incidencias.id_planta = plantas.id 
+                INNER JOIN aulas ON incidencias.id_aula = aulas.id
+                ORDER BY {$orden}";
                 $vista_incidencias = mysqli_query($conn, $query);
 
                 while ($row = mysqli_fetch_assoc($vista_incidencias)) {

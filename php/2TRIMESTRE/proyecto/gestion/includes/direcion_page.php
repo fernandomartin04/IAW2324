@@ -1,8 +1,8 @@
-<?php 
+<?php
 session_start(); // Inicia la sesión al principio del archivo
 
-if (($_SESSION['rol'] != 'direccion')) {
-    header("Location: login.php"); 
+if ($_SESSION['rol'] != 'direccion') {
+    header("Location: login.php");
     exit();
 }
 include "../header.php";
@@ -19,29 +19,27 @@ include "../header.php";
         <table class="table table-bordered rounded table-hover custom-table">
             <thead class="text-white text-center" style="background-color: #154c79">
                 <tr>
-                    <th scope="col">Planta</th>
-                    <th scope="col">Aula</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col"><a href="<? echo $_SERVER['PHP_SELF'] ?>?ordenar=fecha_alta">Fecha Alta</a></th>  
-                    <th scope="col">Fecha Revisión</th>
-                    <th scope="col"><a href="<? echo $_SERVER['PHP_SELF'] ?>?ordenar=fecha_resolucion">Fecha Solución</th>
-                    <th scope="col">Comentario</th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=nombre_planta">Planta</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=nombre_aula">Aula</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=descripcion">Descripción</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=fecha_alta">Fecha Alta</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=fecha_revision">Fecha Revisión</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=fecha_resolucion">Fecha Solución</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=comentarios">Comentario</a></th>
                     <th scope="col" colspan="3" class="text-center">Operaciones</th>
                 </tr>
             </thead>
             <tbody class="text-center">
                 <?php
-
-
-    /*************************************************************/ 
                 $miUser = $_SESSION['usuario'];
+                $ordenar = isset($_GET['ordenar']) ? $_GET['ordenar'] : 'fecha_alta';
                 $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
                           FROM incidencias 
                           INNER JOIN plantas ON incidencias.id_planta = plantas.id 
                           INNER JOIN aulas ON incidencias.id_aula = aulas.id 
                           WHERE user = '$miUser'
-                          ORDER BY " .$_GET['ordenar']; 
-    /*************************************************************/            
+                          ORDER BY $ordenar";
+
                 $vista_incidencias = mysqli_query($conn, $query);
 
                 while ($row = mysqli_fetch_assoc($vista_incidencias)) {

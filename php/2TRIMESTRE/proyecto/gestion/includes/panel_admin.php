@@ -12,6 +12,7 @@ include "../header.php"; ?>
 if ($_POST) {
     $usuario = htmlspecialchars($_POST["usuario"]);
     $contrasena = htmlspecialchars($_POST["contrasena"]);
+    $contrasena2 = htmlspecialchars($_POST["contrasena2"]);
     $email = htmlspecialchars($_POST["email"]);
     $rol = htmlspecialchars($_POST["rol"]);
     $contrasena_codificada = base64_encode($contrasena);
@@ -25,20 +26,25 @@ if ($_POST) {
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn) {
-        if (!$validacionEmail) {
-            echo "<script type='text/javascript'>alert('¡No es correcto el correo!')</script>"; 
-        }
-        else if ($contrasena != $contrasena2) {
-            echo "<script type='text/javascript'>alert('¡No son iguales las contraseñas!')</script>";
-        }
-        else {
-            $query = "INSERT INTO usuarios (usuario, contrasena, rol, correo) VALUES ('$usuario', '$contrasena_codificada', '$rol', '$email')";
-            if (mysqli_query($conn, $query)) {
-                echo "<p class='text-success'>Usuario registrado exitosamente.</p>";
-            } else {
-                echo "<p class='text-danger'>Error al registrar usuario: " . mysqli_error($conn) . "</p>";
+        if ($usuario != "" && $contrasena != "" && $contrasena2 != "" && $email != "" ) {
+            if (!$validacionEmail) {
+                echo "<script type='text/javascript'>alert('¡No es correcto el correo!')</script>"; 
+            }
+            else if ($contrasena != $contrasena2) {
+                echo "<script type='text/javascript'>alert('¡No son iguales las contraseñas!')</script>";
+            }
+            else {
+                $query = "INSERT INTO usuarios (usuario, contrasena, rol, correo) VALUES ('$usuario', '$contrasena_codificada', '$rol', '$email')";
+                if (mysqli_query($conn, $query)) {
+                    echo "<p class='text-success'>Usuario registrado exitosamente.</p>";
+                } else {
+                    echo "<p class='text-danger'>Error al registrar usuario: " . mysqli_error($conn) . "</p>";
+                }
             }
         }
+        else {
+            echo "<script type='text/javascript'>alert('¡Debes de rellenar todos los campos!')</script>";
+        } 
             
     } 
     else {
@@ -62,25 +68,25 @@ if ($_POST) {
                 <form method="POST" class="mt-4">
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
-                        <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Ingresa tu usuario" required>
+                        <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Ingresa tu usuario" >
                     </div>
                     <div class="form-group mt-4">
                         <label for="contrasena">Contraseña</label>
-                        <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Ingresa tu contraseña" required>
+                        <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Ingresa tu contraseña" >
                     </div>
                     <div class="form-group mt-4">
                         <label for="contrasena">Repetir contraseña</label>
-                        <input type="password" class="form-control" name="contrasena2" id="contrasena2" placeholder="Repite tu contraseña" required>
+                        <input type="password" class="form-control" name="contrasena2" id="contrasena2" placeholder="Repite tu contraseña" >
                     </div>
                     <div class="form-group mt-4">
                         <label for="usuario">Correo</label>
-                        <input type="text" class="form-control" name="email" id="email" placeholder="Ingresa tu correo" required>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Ingresa tu correo" >
                     </div>
                     <div class="form-group mt-4">
                         <label for="rol" class="form-label">Rol</label>
                         <select name="rol" id="rol" class="form-control">
-                            <option value="direccion">Dirección</option>
                             <option value="profesor">Profesorado</option>
+                            <option value="direccion">Dirección</option>
                             <option value="administrador">Administrador</option>
                         </select>
                     </div>

@@ -7,10 +7,10 @@ if (($_SESSION['rol'] != 'administrador')) {
 }
 include "../header.php"; ?>
 <?php
-if(isset($_GET['id'])) {
+if(isset($_POST['id'])) {
     
     if($conn) {
-        $id = $_GET['id'];
+        $id = $_POST['id'];
         
         $query = "DELETE FROM usuarios WHERE id_usuario = $id";
         

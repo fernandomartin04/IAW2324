@@ -47,7 +47,9 @@ $fechaHoy = date("Y-m-d"); //Esto me va a servir para no poder seleccionar días
         <h1 class="text-center">Añadir Incidencia</h1>
     </div>
     <form action="" method="post">
-        <div class="form-group">
+
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6  mt-3">
             <label for="planta" class="form-label">Planta</label>
             <select name="planta" id="plantaSelect" class="form-control">
                 <option value="1">Planta Baja</option>
@@ -55,36 +57,41 @@ $fechaHoy = date("Y-m-d"); //Esto me va a servir para no poder seleccionar días
                 <option value="3">Planta Segunda</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-6  mt-3">
             <label for="aula" class="form-label">Aula</label>
             <select name="aula" id="aulaSelect" class="form-control">
             </select>
         </div>
-        <div class="form-group">
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6 mt-3">
             <label for="descripcion" class="form-label">Descripción</label>
             <input type="text" name="descripcion"  class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group  col-sm-12 col-md-6 mt-3">
             <label for="alta" class="form-label">Fecha Alta</label>
             <input type="date" name="alta"  class="form-control" value="<?php echo $fechaHoy; ?>" max="<?php echo $fechaHoy; ?>">
         </div>
-        <div class="form-group">
+    </div>
+    <div class="row">
+        <div class="form-group  col-sm-12 col-md-6  mt-3">
             <label for="resolucion" class="form-label">Fecha Resolucion</label>
             <input type="date" name="resolucion"  class="form-control" value="">
         </div>
-        <div class="form-group">
+        <div class="form-group  col-sm-12 col-md-6  mt-3">
             <label for="revision" class="form-label">Fecha Revision</label>
             <input type="date" name="revision"  class="form-control" value="">
         </div>
-        <div class="form-group">
+    </div>
+        <div class="form-group col-sm-12 mt-3">
             <label for="comentario" class="form-label">Comentario</label>
             <input type="text" name="comentario"  class="form-control">
         </div>
-        <div class="d-flex justify-content-between">
-            <div class="form-group">
+        <div class="d-flex justify-content-center">
+            <div class="form-group m-3">
                 <input type="submit"  name="crear" class="btn btn-primary mt-2 mb-5" value="Añadir">
             </div>
-            <div class="form-group">
+            <div class="form-group m-3">
                 <!-- Según la sesión del usuario lo dirijo a una página u otra -->
 
                 <?php 

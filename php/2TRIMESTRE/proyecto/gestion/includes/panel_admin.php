@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <?php 
 session_start(); // Inicia la sesión al principio del archivo
 
@@ -52,8 +53,34 @@ if ($_POST) {
         echo "<p class='text-danger'>Error de depuración: " . mysqli_connect_error() . "</p>";
     }
 }
-?>
+?><script>
+function delUser(id,usuario,cont){
+    //href='eliminar_usuario.php?id={$id}'
 
+    var result = window.confirm('Estás seguro de eliminar el usuario con id '+usuario+ '?');
+    if (result == true) {
+
+    
+        $.ajax({
+            url: 'eliminar_usuario.php',
+             method: "POST",
+        
+          data: { id: id},
+          success: function(data) {
+            // Handle the successful response
+            alert("usuario Borrado");
+            // $("#fila" + index).remove();
+                location.reload();
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            // Handle errors
+            console.error("Ajax request failed: " + textStatus, errorThrown);
+          }
+        });
+    
+    }
+}
+</script>
 <div class="container mt-4">
     <?php include "barra_admin.php"; ?>
     <div class="header-container text-white p-4 rounded shadow-sm mb-4" style="background-color: #154c79">
@@ -102,7 +129,7 @@ if ($_POST) {
                     <h1 class="text-center">Usuarios</h1>
                 </div>
                 <div class="table-responsive rounded">
-                    <table class="table table-bordered rounded table-hover custom-table">
+                    <table id='userTable' class="table table-bordered rounded table-hover custom-table">
                         <thead class="text-white text-center" style="background-color: #154c79">
                             <tr>
                                 <th scope="col">ID</th> 
@@ -123,20 +150,21 @@ if ($_POST) {
 
                                       
                             $result = mysqli_query($conn, $query);
-                            
+                            $cont = 0;
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $id = $row['id_usuario'];
                                 $usuario = $row['usuario'];
                                 $rol = $row['rol'];
                                 $totalIncidencias = $row['total_incidencias'];
 
-                                echo "<tr>";
+                                echo "<tr id='userRow{$id}'>";
                                 echo "<td>{$id}</td>";
                                 echo "<td>{$usuario}</td>";
                                 echo "<td>{$rol}</td>";  
                                 echo "<td>{$totalIncidencias}</td>";  
-                                echo "<td class='text-center'><a href='eliminar_usuario.php?id={$id}' class='btn btn-danger'><i class='bi bi-trash'></i> Eliminar</a></td>";
+                                echo "<td class='text-center'><a onclick=\"delUser('{$id}','{$usuario}','{$cont}')\" class='btn btn-danger'><i class='bi bi-trash'></i> Eliminar</a></td>";
                                 echo "</tr>";
+                                $cont++;
                             }
                             ?>
                         </tbody>

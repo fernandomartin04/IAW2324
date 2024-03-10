@@ -1,14 +1,23 @@
 <?php 
 session_start(); // Inicia la sesión al principio del archivo
 
-if (($_SESSION['rol'] != 'administrador')) {
+if ($_SESSION['rol'] != 'administrador') {
     header("Location: login.php"); 
     exit();
 }
 
 include "../header.php";
 
+$orden = 'fecha_alta'; // Orden por defecto
+$columnasOrdenables = array('fecha_alta', 'fecha_revision', 'fecha_resolucion', 'nombre_planta', 'nombre_aula', 'descripcion');
+
+if (isset($_GET['ordenar']) && in_array($_GET['ordenar'], $columnasOrdenables)) {
+    $orden = $_GET['ordenar'];
+}
+
 ?>
+
+
 
 <div class="container mt-4">
     <?php include "barra_admin.php"?>
@@ -22,42 +31,24 @@ include "../header.php";
         <table class="table table-bordered rounded table-hover custom-table">
             <thead class="text-white text-center" style="background-color: #154c79">
                 <tr>
-                    <th scope="col">Planta</th>
-                    <th scope="col">Aula</th>
-                    <th scope="col">Descripción</th>
+                    <th scope="col"><a href="?ordenar=nombre_planta">Planta</a></th>
+                    <th scope="col"><a href="?ordenar=nombre_aula">Aula</a></th>
+                    <th scope="col"><a href="?ordenar=descripcion">Descripción</a></th>
                     <th scope="col"><a href="?ordenar=fecha_alta">Fecha Alta</a></th>  
                     <th scope="col"><a href="?ordenar=fecha_revision">Fecha Revisión</a></th>
                     <th scope="col"><a href="?ordenar=fecha_resolucion">Fecha Solución</a></th>
-                    <th scope="col">Comentario</th>
+                    <th scope="col"><a href="?ordenar=fecha_resolucion">Comentario</a></th>
                     <th scope="col" colspan="3" class="text-center">Operaciones</th>
                 </tr>
             </thead>
             <tbody class="text-center">
                 <?php
 
-                //defecto
-
-                $orden = 'fecha_alta';
-                if(isset($_GET['ordenar'])) {
-                    $orden = $_GET['ordenar'];
-                }
-/*                // Establece el valor por defecto de la variable de orden
-                $orden = isset($_GET['ordenar']) ? $_GET['ordenar'] : '';
-
-                // Si no se proporciona un parámetro de orden, deja la cadena ORDER BY vacía
-                $orderClause = $orden ? "ORDER BY $orden" : '';
-
                 $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
                           FROM incidencias 
                           INNER JOIN plantas ON incidencias.id_planta = plantas.id 
                           INNER JOIN aulas ON incidencias.id_aula = aulas.id
-                          $orderClause";
-*/  
-                $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
-                FROM incidencias 
-                INNER JOIN plantas ON incidencias.id_planta = plantas.id 
-                INNER JOIN aulas ON incidencias.id_aula = aulas.id
-                ORDER BY {$orden}";
+                          ORDER BY {$orden}";
                 $vista_incidencias = mysqli_query($conn, $query);
 
                 while ($row = mysqli_fetch_assoc($vista_incidencias)) {

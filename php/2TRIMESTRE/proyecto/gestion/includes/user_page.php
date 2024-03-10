@@ -7,8 +7,6 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-date_default_timezone_set('Europe/Madrid');
-
 include "../header.php"?>
 
 <div class="container mt-4">
@@ -23,23 +21,24 @@ include "../header.php"?>
         <table class="table table-bordered table-hover custom-table">
             <thead class="text-white text-center" style="background-color: #154c79">
                 <tr>
-                    <th scope="col">Planta</th>
-                    <th scope="col">Aula</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Fecha Alta</th>
-                    <th scope="col">Comentario</th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=nombre_planta">Planta</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=nombre_aula">Aula</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=descripcion">Descripción</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=fecha_alta">Fecha Alta</a></th>
+                    <th scope="col"><a href="<?= $_SERVER['PHP_SELF'] ?>?ordenar=comentarios">Comentario</a></th>
                 </tr>
             </thead>
             <tbody class="text-center">
                 <?php
                 $miUser = $_SESSION['usuario'];
+                $ordenar = isset($_GET['ordenar']) ? $_GET['ordenar'] : 'fecha_alta';
 
                 $query = "SELECT incidencias.*, plantas.nombre_planta, aulas.nombre_aula 
                           FROM incidencias 
                           INNER JOIN plantas ON incidencias.id_planta = plantas.id 
                           INNER JOIN aulas ON incidencias.id_aula = aulas.id
                           WHERE user = '$miUser'
-                          ORDER BY fecha_alta";
+                          ORDER BY $ordenar";
                 
                 $vista_incidencias = mysqli_query($conn, $query);
 

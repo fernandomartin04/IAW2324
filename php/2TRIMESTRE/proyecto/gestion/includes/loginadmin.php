@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "../header.php";
-
+date_default_timezone_set('Europe/Madrid');
 if ($_POST) {
     $usuario = htmlspecialchars($_POST["usuario"]);
     $contrasena = htmlspecialchars($_POST["contrasena"]);
@@ -21,6 +21,7 @@ if ($_POST) {
 
             $nombreUsuario = $row['usuario'];
             $queryUpdate = "UPDATE usuarios SET ultima_conexion = NOW() WHERE usuario = '$nombreUsuario'";
+            $_SESSION["ultima_conexion"] = date("d.m.Y, g:i a"); 
             mysqli_query($conn, $queryUpdate);
 
             // Verifica si el usuario es administrador, dirección, o profesor

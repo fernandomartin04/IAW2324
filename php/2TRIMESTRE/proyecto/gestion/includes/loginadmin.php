@@ -17,6 +17,12 @@ if ($_POST) {
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
 
+            //Actualizo la columna última conexión de la tabla de usuarios
+
+            $nombreUsuario = $row['usuario'];
+            $queryUpdate = "UPDATE usuarios SET ultima_conexion = NOW() WHERE usuario = '$nombreUsuario'";
+            mysqli_query($conn, $queryUpdate);
+
             // Verifica si el usuario es administrador, dirección, o profesor
             if ($row['rol'] == 'administrador' || $row['rol'] == 'direccion' || $row['rol'] == 'profesor') {
 

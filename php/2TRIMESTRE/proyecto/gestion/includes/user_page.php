@@ -6,6 +6,9 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php"); // Redirige al usuario a la página de inicio de sesión si no ha iniciado sesión
     exit();
 }
+
+date_default_timezone_set('Europe/Madrid');
+
 include "../header.php"?>
 
 <div class="container mt-4">
@@ -64,6 +67,7 @@ include "../header.php"?>
 <div class="container text-center mt-5 mb-5">
     <a href="indexusuario.php" class="btn btn-warning">Volver</a>
 </div>
-<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
+<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p><br>
+<p>Última conexión: <?php echo $_SESSION["ultima_conexion"]; ?></p>
 
 <?php include "../footer.php" ?>

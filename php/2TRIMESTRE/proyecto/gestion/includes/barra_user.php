@@ -8,6 +8,7 @@
       <a class="nav-item nav-link active" href="user_page.php">Incidencias</a>
       <a class="nav-item nav-link" href="create-user.php">Añadir</a>
       <a class="nav-item nav-link" href="login.php">Login/Logout</a>
+      <a class="nav-item nav-link" href="contrasena.php">Cambiar contraseña</a>
     </div>
     <span class="navbar-text ms-auto" style="color: black; text-decoration: underline;">
       <?php echo $_SESSION["usuario"]; ?>

@@ -84,6 +84,10 @@ if ($_POST && isset($_POST["boton_cambiar"])) {
         <a href="<?php echo $volverUrl; ?>" class="btn btn-warning mt-2 mb-5"> Volver </a>   
     </div>
 </div>
-
+<div class="container text-center mt-4">
+    <p class="mb-2">Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
+    <p>Su última conexión fue <?php echo $_SESSION["ultima_conexion"]; ?></p>
+    <p>Dirección IP última de conexión: <?php echo $_SESSION["direccion_ip"]; ?></p>
+</div>
 <?php include "../footer.php"; ?>
 

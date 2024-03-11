@@ -75,5 +75,9 @@ include "../header.php";
     <a href="index.php" class="btn btn-warning mb-5">Volver</a>
 </div>
 
-<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
+<div class="container text-center mt-4">
+    <p class="mb-2">Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
+    <p>Su última conexión fue <?php echo $_SESSION["ultima_conexion"]; ?></p>
+    <p>Dirección IP última de conexión: <?php echo $_SESSION["direccion_ip"]; ?></p>
+</div>
 <?php include "../footer.php" ?>

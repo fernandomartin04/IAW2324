@@ -9,7 +9,7 @@ if ($_SESSION['rol'] != 'administrador') {
 include "../header.php";
 
 $orden = 'fecha_alta'; // Orden por defecto
-$columnasOrdenables = array('fecha_alta', 'fecha_revision', 'fecha_resolucion', 'nombre_planta', 'nombre_aula', 'descripcion');
+$columnasOrdenables = array('fecha_alta', 'fecha_revision', 'fecha_resolucion', 'nombre_planta', 'nombre_aula', 'descripcion', 'comentarios', 'user');
 
 if (isset($_GET['ordenar']) && in_array($_GET['ordenar'], $columnasOrdenables)) {
     $orden = $_GET['ordenar'];
@@ -37,7 +37,8 @@ if (isset($_GET['ordenar']) && in_array($_GET['ordenar'], $columnasOrdenables)) 
                     <th scope="col"><a href="?ordenar=fecha_alta">Fecha Alta</a></th>  
                     <th scope="col"><a href="?ordenar=fecha_revision">Fecha Revisión</a></th>
                     <th scope="col"><a href="?ordenar=fecha_resolucion">Fecha Solución</a></th>
-                    <th scope="col"><a href="?ordenar=fecha_resolucion">Comentario</a></th>
+                    <th scope="col"><a href="?ordenar=comentarios">Comentario</a></th>
+                    <th scope="col"><a href="?ordenar=user">Usuario</a></th>
                     <th scope="col" colspan="3" class="text-center">Operaciones</th>
                 </tr>
             </thead>
@@ -60,6 +61,8 @@ if (isset($_GET['ordenar']) && in_array($_GET['ordenar'], $columnasOrdenables)) 
                     $revision = $row['fecha_revision'];
                     $resolucion = $row['fecha_resolucion'];
                     $comentario = $row['comentarios'];
+                    $user = $row['user'];
+
 
                     echo "<tr>";
                     echo "<td>{$planta}</td>";
@@ -69,6 +72,7 @@ if (isset($_GET['ordenar']) && in_array($_GET['ordenar'], $columnasOrdenables)) 
                     echo "<td>{$revision}</td>";
                     echo "<td>{$resolucion}</td>";
                     echo "<td>{$comentario}</td>";
+                    echo "<td>{$user}</td>";
                     echo "<td class='text-center'><a href='view.php?incidencia_id={$id}' class='btn btn-primary'><i class='bi bi-eye'></i></a></td>";
                     echo "<td class='text-center'><a href='update.php?editar&incidencia_id={$id}' class='btn btn-secondary'><i class='bi bi-pencil'></i></a></td>";
                     echo "<td class='text-center'><a href='delete.php?eliminar={$id}' class='btn btn-danger'><i class='bi bi-trash'></i></a></td>";
@@ -83,6 +87,9 @@ if (isset($_GET['ordenar']) && in_array($_GET['ordenar'], $columnasOrdenables)) 
 <div class="container text-center mt-5">
     <a href="index.php" class="btn btn-warning mb-5">Volver</a>
 </div>
-<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
-
+<div class="container text-center mt-4">
+    <p class="mb-2">Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
+    <p>Su última conexión fue <?php echo $_SESSION["ultima_conexion"]; ?></p>
+    <p>Dirección IP última de conexión: <?php echo $_SESSION["direccion_ip"]; ?></p>
+</div>
 <?php include "../footer.php" ?>

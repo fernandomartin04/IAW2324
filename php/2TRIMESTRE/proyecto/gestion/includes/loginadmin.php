@@ -11,7 +11,7 @@ if ($_POST) {
 
     if ($conn) {
 
-        $query = "SELECT * FROM usuarios WHERE usuario='" . mysqli_real_escape_string($conn, $usuario) . "' AND contrasena='" . mysqli_real_escape_string($conn, $contrasena_codificada) . "'";
+        $query = "SELECT * FROM usuarios WHERE usuario='" . mysqli_real_escape_string($conn, $usuario) . "' OR correo='" . mysqli_real_escape_string($conn, $usuario) ."' AND contrasena='" . mysqli_real_escape_string($conn, $contrasena_codificada) . "'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {
@@ -23,6 +23,13 @@ if ($_POST) {
             $queryUpdate = "UPDATE usuarios SET ultima_conexion = NOW() WHERE usuario = '$nombreUsuario'";
             $_SESSION["ultima_conexion"] = date("d.m.Y, g:i a"); 
             mysqli_query($conn, $queryUpdate);
+
+
+            // Actualizo la columna de direccion_ip de la tabla usuarios
+            $direccionIP = $_SERVER['REMOTE_ADDR'];
+            $updateIp = "UPDATE usuarios SET direccion_ip = '$direccionIP' WHERE usuario = '$nombreUsuario'";
+            $_SESSION["direccion_ip"] = $direccionIP;
+            mysqli_query($conn, $updateIp);
 
             // Verifica si el usuario es administrador, dirección, o profesor
             if ($row['rol'] == 'administrador' || $row['rol'] == 'direccion' || $row['rol'] == 'profesor') {
@@ -54,9 +61,6 @@ if ($_POST) {
 }
 ?>
 
-
-
-
 <body class="bg-light">
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
@@ -71,7 +75,7 @@ if ($_POST) {
                             </path>
                         </svg>
                     </span>
-                    <input type="text" class="form-control" name="usuario" placeholder="Introduzca su Usuario">
+                    <input type="text" class="form-control" name="usuario" placeholder="Introduzca su Usuario o Correo">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">

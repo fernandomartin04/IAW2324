@@ -7,8 +7,8 @@ if (($_SESSION['rol'] != 'administrador')) {
     exit();
 }
 include "../header.php"; ?>
-
 <?php
+
 
 if ($_POST) {
     $usuario = htmlspecialchars($_POST["usuario"]);
@@ -23,63 +23,65 @@ if ($_POST) {
         return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
+    // Consulta para verificar si ya existe un usuario con el mismo nombre de usuario
+    $consultaUsuario = "SELECT usuario FROM usuarios WHERE usuario = '$usuario'";
+
+    // Consulta para verificar si ya existe un usuario con el mismo correo electrónico
+    $consultaCorreo = "SELECT correo FROM usuarios WHERE correo = '$email'";
+
     $validacionEmail = validateEmail($email);
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn) {
-        if ($usuario != "" && $contrasena != "" && $contrasena2 != "" && $email != "" ) {
-            if (!$validacionEmail) {
-                echo "<script type='text/javascript'>alert('¡No es correcto el correo!')</script>"; 
-            }
-            else if ($contrasena != $contrasena2) {
-                echo "<script type='text/javascript'>alert('¡No son iguales las contraseñas!')</script>";
-            }
-            else {
-                $query = "INSERT INTO usuarios (usuario, contrasena, rol, correo) VALUES ('$usuario', '$contrasena_codificada', '$rol', '$email')";
-                if (mysqli_query($conn, $query)) {
-                    echo "<p class='text-success'>Usuario registrado exitosamente.</p>";
-                } else {
-                    echo "<p class='text-danger'>Error al registrar usuario: " . mysqli_error($conn) . "</p>";
-                }
+    if ($usuario != "" && $contrasena != "" && $contrasena2 != "" && $email != "" ) {
+        // Ejecuto la consulta para el nombre de usuario
+        $resultadoUsuario = mysqli_query($conn, $consultaUsuario);
+
+        // Ejecuto la consulta para el correo electrónico
+        $resultadoCorreo = mysqli_query($conn, $consultaCorreo);
+
+        // Verifica si ya existe un usuario con el mismo nombre de usuario
+        if (mysqli_num_rows($resultadoUsuario) > 0) {
+            echo "<script type='text/javascript'>alert('¡El usuario ya existe!')</script>";
+        } elseif (mysqli_num_rows($resultadoCorreo) > 0) {
+            echo "<script type='text/javascript'>alert('¡El correo electrónico ya está registrado!')</script>";
+        } elseif (!$validacionEmail) {
+            echo "<script type='text/javascript'>alert('¡No es correcto el correo!')</script>"; 
+        } elseif ($contrasena != $contrasena2) {
+            echo "<script type='text/javascript'>alert('¡No son iguales las contraseñas!')</script>";
+        } else {
+            $query = "INSERT INTO usuarios (usuario, contrasena, rol, correo) VALUES ('$usuario', '$contrasena_codificada', '$rol', '$email')";
+            if (mysqli_query($conn, $query)) {
+                echo "<p class='text-success'>Usuario registrado exitosamente.</p>";
+            } else {
+                echo "<p class='text-danger'>Error al registrar usuario: " . mysqli_error($conn) . "</p>";
             }
         }
-        else {
-            echo "<script type='text/javascript'>alert('¡Debes de rellenar todos los campos!')</script>";
-        } 
-            
+    } else {
+        echo "<script type='text/javascript'>alert('¡Debes de rellenar todos los campos!')</script>";
     } 
-    else {
-        echo "<p class='text-danger'>Error: No se pudo conectar a MySQL.</p>";
-        echo "<p class='text-danger'>Error de depuración: " . mysqli_connect_error() . "</p>";
-    }
 }
-?><script>
-function delUser(id,usuario,cont){
-    //href='eliminar_usuario.php?id={$id}'
+?>
+<script>
+    function delUser(id,usuario,cont){
 
-    var result = window.confirm('Estás seguro de eliminar el usuario con id '+usuario+ '?');
-    if (result == true) {
+        var result = window.confirm('Estás seguro de eliminar el usuario '+usuario+ '?');
+        if (result == true) {
 
-    
-        $.ajax({
-            url: 'eliminar_usuario.php',
-             method: "POST",
+            $.ajax({
+                url: 'eliminar_usuario.php',
+                method: "POST",
+            
+            data: { id: id},
+            success: function(data) {
+                alert("usuario Borrado");
+                    location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Ajax request failed: " + textStatus, errorThrown);
+            }
+            });
         
-          data: { id: id},
-          success: function(data) {
-            // Handle the successful response
-            alert("usuario Borrado");
-            // $("#fila" + index).remove();
-                location.reload();
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            // Handle errors
-            console.error("Ajax request failed: " + textStatus, errorThrown);
-          }
-        });
-    
+        }
     }
-}
 </script>
 <div class="container mt-4">
     <?php include "barra_admin.php"; ?>
@@ -178,6 +180,11 @@ function delUser(id,usuario,cont){
 <div class="container text-center mt-5">
     <a href="admin_page.php" class="btn btn-warning mb-5">Volver</a>
 </div>
-<p>Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
+<div class="container text-center mt-4">
+    <p class="mb-2">Está usted conectado como <?php echo $_SESSION["usuario"]; ?></p>
+    <p>Su última conexión fue <?php echo $_SESSION["ultima_conexion"]; ?></p>
+    <p>Dirección IP última de conexión: <?php echo $_SESSION["direccion_ip"]; ?></p>
+</div>
+
 
 <?php include "../footer.php"; ?>

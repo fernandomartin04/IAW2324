@@ -21,7 +21,8 @@ if ($_POST) {
 
             $nombreUsuario = $row['usuario'];
             $queryUpdate = "UPDATE usuarios SET ultima_conexion = NOW() WHERE usuario = '$nombreUsuario'";
-            $_SESSION["ultima_conexion"] = date("d.m.Y, g:i a"); 
+            setlocale(LC_TIME, 'es_ES');
+            $_SESSION["ultima_conexion"] = strftime('%e de %B de %Y a las %l:%M %p');
             mysqli_query($conn, $queryUpdate);
 
 

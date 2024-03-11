@@ -11,7 +11,7 @@
       <a class="nav-item nav-link" href="contrasena.php">Cambiar contraseña</a>
     </div>
     <span class="navbar-text ms-auto" style="color: black; text-decoration: underline;">
-      <?php echo $_SESSION["usuario"]; ?>
-    </span>
+    <p class="mb-2">Está usted conectado como <?php echo $_SESSION["usuario"]; ?> como "<?php echo $_SESSION["rol"]; ?>"</p>
+    <p>Su última conexión fue <?php echo $_SESSION["ultima_conexion"]; ?></p>       </span>
   </div>
 </nav>

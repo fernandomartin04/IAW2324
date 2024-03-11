@@ -134,21 +134,33 @@ if ($_POST) {
                     <table id='userTable' class="table table-bordered rounded table-hover custom-table">
                         <thead class="text-white text-center" style="background-color: #154c79">
                             <tr>
-                                <th scope="col">ID</th> 
-                                <th scope="col">Usuario</th>
+                                <th scope="col"><a href="?ordenar=id_usuario">ID</a></th> 
+                                <th scope="col"><a href="?ordenar=usuario">Usuario</a></th>
                                 <th scope="col">Rol</th>
                                 <th scope="col">Incidencias</th>
+                                <th scope="col"><a href="?ordenar=correo">Correo</a></th>
                                 <th scope="col" colspan="2" class="text-center">Operaciones</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
                             <?php
+                            /////////////////////////
+
+                            $orden = 'id_usuario'; // Orden por defecto
+                            $columnasOrdenables = array('id_usuario', 'usuario', 'correo');
+
+                            if (isset($_GET['ordenar']) && in_array($_GET['ordenar'], $columnasOrdenables)) {
+                                $orden = $_GET['ordenar'];
+                            }
+
+                            ///////////////////////////
                             $miUsuario = $_SESSION['usuario'];
-                            $query = "SELECT usuarios.id_usuario, usuarios.usuario, usuarios.rol, COUNT(incidencias.id) as total_incidencias
+                            $query = "SELECT usuarios.id_usuario, usuarios.usuario, usuarios.rol, usuarios.correo, COUNT(incidencias.id) as total_incidencias
                                       FROM usuarios 
                                       LEFT JOIN incidencias ON usuarios.usuario = incidencias.user
                                       WHERE usuarios.usuario != '$miUsuario'
-                                      GROUP BY usuarios.id_usuario";
+                                      GROUP BY usuarios.id_usuario
+                                      ORDER BY {$orden}";
 
                                       
                             $result = mysqli_query($conn, $query);
@@ -158,12 +170,14 @@ if ($_POST) {
                                 $usuario = $row['usuario'];
                                 $rol = $row['rol'];
                                 $totalIncidencias = $row['total_incidencias'];
+                                $correo = $row['correo'];
 
                                 echo "<tr id='userRow{$id}'>";
                                 echo "<td>{$id}</td>";
                                 echo "<td>{$usuario}</td>";
                                 echo "<td>{$rol}</td>";  
                                 echo "<td>{$totalIncidencias}</td>";  
+                                echo "<td>{$correo}</td>";  
                                 echo "<td class='text-center'><a onclick=\"delUser('{$id}','{$usuario}','{$cont}')\" class='btn btn-danger'><i class='bi bi-trash'></i> Eliminar</a></td>";
                                 echo "</tr>";
                                 $cont++;

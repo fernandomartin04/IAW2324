@@ -10,7 +10,7 @@ include "../header.php"; ?>
 <?php
 
 
-if ($_POST) {
+if ($_POST && isset($_POST["boton_registrar"])) {
     $usuario = htmlspecialchars($_POST["usuario"]);
     $contrasena = htmlspecialchars($_POST["contrasena"]);
     $contrasena2 = htmlspecialchars($_POST["contrasena2"]);
@@ -120,7 +120,7 @@ if ($_POST) {
                         </select>
                     </div>
                     <div class="form-group mt-4">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" name="boton_registrar" class="btn btn-primary">Registrar</button>
                     </div>
                 </form>
             </div>
@@ -187,9 +187,48 @@ if ($_POST) {
                     </table>
                 </div>
             </div>
+        </div>  
+    </div>
+    <div class="container">
+        <div class="header-container text-white p-4 rounded shadow-sm mb-1" style="background-color: #154c79">
+            <h1 class="text-center">Aulas</h1>
         </div>
+            <form method="POST" class="mt-4">
+                <div class="class="form-group col-sm-12 col-md-6  mt-3"">
+                    <label for="aula">Nombre de aula</label>
+                    <input type="text" class="form-control" name="nombre_aula" id="nombre_aula" placeholder="Ingresa el nombre de aula" >
+                </div>
+                <div class="container text-center mt-5">
+                    <input type="submit" class="btn btn-success" name="boton_aula" value="Añadir aula">
+                </div>
+            </form>
+            
     </div>
 </div>
+
+<?php
+
+        if ($_POST && isset($_POST["boton_aula"])) {
+            $nombre_aula = htmlspecialchars($_POST["nombre_aula"]);
+
+            $consultaAula = "SELECT nombre_aula FROM aulas WHERE nombre_aula = '$nombre_aula'";
+            $resultadoAula = mysqli_query($conn, $consultaAula);
+
+            if (mysqli_num_rows($resultadoAula) > 0) {
+                echo "<script type='text/javascript'>alert('¡El aula ya existe!')</script>";
+            }
+            else {
+                $insercionAula = "INSERT INTO `aulas` (`id`, `nombre_aula`) VALUES (NULL, '$nombre_aula');";
+                if (mysqli_query($conn, $insercionAula)) {
+                    echo "<p class='text-success'>Aula registrada exitosamente.</p>";
+                } else {
+                    echo "<p class='text-danger'>Error al registrar el aula: " . mysqli_error($conn) . "</p>";
+                }
+            }
+            
+        }
+?>
+
 
 <div class="container text-center mt-5">
     <a href="admin_page.php" class="btn btn-warning mb-5">Volver</a>
